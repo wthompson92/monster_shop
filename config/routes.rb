@@ -18,4 +18,9 @@ Rails.application.routes.draw do
   delete '/cart/:item_id', to: 'cart#remove_item'
 
   resources :orders, only: [:new, :create, :show]
+
+  resources :users, only: [:new, :create, :show]
+
+  namespace :user do
+ resources :categories
 end
