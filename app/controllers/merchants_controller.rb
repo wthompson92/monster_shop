@@ -11,8 +11,13 @@ class MerchantsController < ApplicationController
   end
 
   def create
-    Merchant.create(merchant_params)
-    redirect_to '/merchants'
+    merchant = Merchant.new(merchant_params)
+    if merchant.save
+      redirect_to '/merchants'
+    else
+      generate_flash(merchant)
+      render :new
+    end
   end
 
   def edit
@@ -21,12 +26,21 @@ class MerchantsController < ApplicationController
 
   def update
     @merchant = Merchant.find(params[:id])
-    @merchant.update(merchant_params)
-    redirect_to "/merchants/#{@merchant.id}"
+    if @merchant.update(merchant_params)
+      redirect_to "/merchants/#{@merchant.id}"
+    else
+      generate_flash(@merchant)
+      render :edit
+    end
   end
 
   def destroy
-    Merchant.destroy(params[:id])
+    merchant = Merchant.find(params[:id])
+    if merchant.order_items.empty?
+      merchant.destroy
+    else
+      flash[:notice] = "#{merchant.name} can not be deleted - they have orders!"
+    end
     redirect_to '/merchants'
   end
 

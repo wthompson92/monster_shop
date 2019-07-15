@@ -1,4 +1,5 @@
 require 'rails_helper'
+include ActionView::Helpers::NumberHelper
 
 RSpec.describe 'New Merchant Item' do
   describe 'As a Visitor' do
@@ -36,6 +37,21 @@ RSpec.describe 'New Merchant Item' do
       expect(page).to have_content("Price: #{number_to_currency(price)}")
       expect(page).to have_content("Active")
       expect(page).to have_content("Inventory: #{inventory}")
+    end
+
+    it 'I can not create an  item for a merchant with an incomplete form' do
+      name = 'Ogre'
+
+      visit "/merchants/#{@megan.id}/items/new"
+
+      fill_in 'Name', with: name
+      click_button 'Create Item'
+
+      expect(page).to have_content("description: [\"can't be blank\"]")
+      expect(page).to have_content("price: [\"can't be blank\"]")
+      expect(page).to have_content("image: [\"can't be blank\"]")
+      expect(page).to have_content("inventory: [\"can't be blank\"]")
+      expect(page).to have_button('Create Item')
     end
   end
 end

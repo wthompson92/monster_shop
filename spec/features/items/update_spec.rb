@@ -1,4 +1,5 @@
 require 'rails_helper'
+include ActionView::Helpers::NumberHelper
 
 RSpec.describe 'Update Item Page' do
   describe 'As a Visitor' do
@@ -37,6 +38,21 @@ RSpec.describe 'Update Item Page' do
       expect(page).to have_content("Price: #{number_to_currency(price)}")
       expect(page).to have_content("Active")
       expect(page).to have_content("Inventory: #{inventory}")
+    end
+
+    it 'I can not edit the item with an incomplete form' do
+      name = 'Giant'
+
+      visit "/items/#{@ogre.id}/edit"
+
+      fill_in 'Name', with: name
+      click_button 'Update Item'
+
+      expect(page).to have_content("description: [\"can't be blank\"]")
+      expect(page).to have_content("price: [\"can't be blank\"]")
+      expect(page).to have_content("image: [\"can't be blank\"]")
+      expect(page).to have_content("inventory: [\"can't be blank\"]")
+      expect(page).to have_button('Update Item')
     end
   end
 end
