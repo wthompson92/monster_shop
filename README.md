@@ -1,7 +1,6 @@
 # Monster Shop
 BE Mod 2 Week 4/5 Group Project
 
-##
 
 ## Background and Description
 
