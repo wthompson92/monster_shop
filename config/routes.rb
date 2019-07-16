@@ -21,7 +21,4 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :new, :create, :show]
 
-  namespace :user do
- resources :categories
-end
 end

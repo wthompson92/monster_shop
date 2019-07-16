@@ -18,8 +18,8 @@ class UsersController < ApplicationController
       redirect_to root_path
       flash[:success] = "#{user.user_name} created"
     else
-      generate_flash(user)
       render :new
+      # generate_flash(user)
     end
   end
 
