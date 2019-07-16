@@ -8,15 +8,16 @@ class SessionsController < ApplicationController
      session[:user_id] = user.id
       redirect_to user_path(user)
     else
+      flash.now[:alert] = "user name and/or password invalid."
       render :new
-      generate_flash(user)
     end
   end
 
   def destroy
     session.delete(:user_id)
-    redirect_to login_path
-
+    session.delete(:cart)
+    flash[:alert] = "You have been logged out"
+    redirect_to root_path
   end
 
 end

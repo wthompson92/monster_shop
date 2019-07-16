@@ -9,6 +9,7 @@ class UsersController < ApplicationController
    end
 
   def new
+    @user = User.new(user_params)
   end
 
   def create
@@ -18,8 +19,8 @@ class UsersController < ApplicationController
       redirect_to user_path(user)
       flash[:success] = "#{user.user_name} created"
     else
-      generate_flash(user)
       render :new
+      generate_flash(user)
     end
   end
 
@@ -27,6 +28,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-      params.permit(:user_name, :password)
+      params.permit(:name, :user_name, :password, :address, :zip, :city, :state)
   end
 end
