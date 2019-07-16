@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20190716204639) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(version: 20190716204639) do
   create_table "users", force: :cascade do |t|
     t.string "user_name"
     t.string "password_digest"
+
     t.integer "role", default: 0
     t.string "address"
     t.string "city"
