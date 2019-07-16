@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all
+  end
+
   def show
      @user = User.find(params[:id])
    end
@@ -12,7 +16,9 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       redirect_to root_path
+      flash[:success] = "#{user.user_name} created"
     else
+      generate_flash(user)
       render :new
     end
   end

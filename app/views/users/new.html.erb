@@ -1,21 +1,25 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-      <div class="card card-signin my-5">
-        <div class="card-body">
-          <h5 class="card-title text-center">Sign In</h5>
-          <form class="form-signin">
-            <div class="form-label-group">
-              <%= form_tag users_path do %>
-              <%= label_tag :user_name %>
-              <%= text_field_tag :user_name %>
+<%= form_tag users_path do %>
+<%= label_tag :user_name %>
+<%= text_field_tag :user_name %>
 
-            </div>
+<%= label_tag :password %>
+<%= text_field_tag :password %>
 
-            <div class="form-label-group">
-              <%= label_tag :password %>
-              <%= text_field_tag :password %>
-            </div>
-            <%= submit_tag 'Create Profile', class:"btn btn-lg btn-primary btn-block text-uppercase" %>
 
-            <% end %>
+  <%= label_tag :role %>
+  <%= text_field_tag :role %>
+
+  <%= label_tag :address %>
+  <%= text_field_tag :address %>
+
+  <%= label_tag :city %>
+  <%= text_field_tag :city %>
+
+  <%= label_tag :state %>
+  <%= text_field_tag :state %>
+
+  <%= label_tag :zip %>
+  <%= text_field_tag :zip %>
+
+  <%= submit_tag 'Create Profile' %>
+<% end %>
