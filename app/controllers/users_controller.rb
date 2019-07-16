@@ -24,12 +24,6 @@ class UsersController < ApplicationController
   end
 
 
-
-  def destroy
-    session.delete(:user_name)
-    redirect_to root_path
-  end
-
   private
 
   def user_params

@@ -32,7 +32,7 @@ it "redirects to the form with a flash message for missing fields" do
   fill_in "Password", with: "password123"
   click_button "Create Profile"
 
-  expect(current_path).to eq(new_user_path)
+  expect(current_path).to eq(users_path)
   # expect(page).to have_content("user_name: [\"can't be blank\"]")
 end
 end
@@ -41,21 +41,23 @@ it "redirects to the form with a flash message for missing fields" do
   visit root_path
   click_link "Register"
 
-  expect(current_path).to eq(new_user_path)  fill_in "User name", with: "user123"
+  expect(current_path).to eq(new_user_path)
+  fill_in "User name", with: "user123"
   fill_in "Password", with: "password123"
   fill_in "address", with: "123 Main St"
   click_button "Create Profile"
 
-  expect(current_path).to eq(root_path)
+  expect(current_path).to eq(users_path)
 
   visit root_path
   click_link "Register"
+  expect(current_path).to eq(new_user_path)
 
   fill_in "User name", with: "user123"
   fill_in "Password", with: "password123"
   fill_in "address", with: "123 Main St"
   click_button "Create Profile"
-  expect(current_path).to eq(new_user_path)
+  expect(current_path).to eq(users_path)
 
   # expect(page).to have_content("user_name: [\"can't be blank\"]")
 
