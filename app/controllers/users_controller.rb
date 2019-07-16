@@ -15,13 +15,15 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      redirect_to root_path
+      redirect_to user_path(user)
       flash[:success] = "#{user.user_name} created"
     else
+      generate_flash(user)
       render :new
-      # generate_flash(user)
     end
   end
+
+
 
   def destroy
     session.delete(:user_name)
