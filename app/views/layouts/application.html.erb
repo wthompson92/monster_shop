@@ -23,6 +23,7 @@
       <%= link_to "Profile", profile_path if current_user %>
       <%= link_to "Register", new_user_path unless current_user %>
       <%= link_to "Logout", logout_path , method: :delete if current_user %>
+      <%= "Logged in as #{current_user.name}" if current_user %>
     </nav>
     <% flash.each do |type, message| %>
     <p><%= message %></p>
