@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "Merchant Navigation" do
-  describe "As a user who works for a merchant" do
+RSpec.describe "Admin Navigation" do
+  describe "As an admin" do
     it "My navigation bar includes the following:" do
       admin = User.create!(user_name: "andrew@gmail.com", password: "thinking123", role: 2, name: "Andrew", address: "333 Market St", city: "Denver", state: "CO", zip: 80012 )
 
@@ -20,5 +20,30 @@ RSpec.describe "Merchant Navigation" do
       expect(page).not_to have_link("Login")
       expect(page).not_to have_link("Register")
     end
+
+    it 'does not allow admin to see merchant dashboard' do
+
+      visit merchant_dashboard_path
+
+      expect(page).to_not have_content("Admin Dashboard")
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+      expect(page.status_code).to eq(404)
+    end
+
+    it 'does not allow admin to see user profile' do
+
+      visit profile_path
+      expect(page).to_not have_content("Profile")
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+      expect(page.status_code).to eq(404)
+    end
+
+    # it 'does not allow admin to see user the cart' do
+    #
+    #   visit cart_path
+    #   expect(page).to_not have_content("Cart")
+    #   expect(page).to have_content("The page you were looking for doesn't exist.")
+    #   expect(page.status_code).to eq(404)
+    # end
   end
 end

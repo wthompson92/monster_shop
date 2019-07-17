@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_current_user, only: [:show]
 
   def index
     @users = User.all
@@ -25,7 +26,6 @@ class UsersController < ApplicationController
       generate_flash(user)
     end
   end
-
 
   private
 

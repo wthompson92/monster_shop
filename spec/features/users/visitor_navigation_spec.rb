@@ -23,5 +23,31 @@ RSpec.describe "Visitor Navigation" do
         expect(page).to have_content(cart.count)
       end
     end
+
+    it 'does not allow default user to see merchant dashboard' do
+
+      visit merchant_dashboard_path
+
+      expect(page).to_not have_content("Merchant Dashboard")
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+      expect(page.status_code).to eq(404)
+    end
+
+    it 'does not allow default user to see admin dashboard' do
+
+      visit admin_dashboard_path
+
+      expect(page).to_not have_content("Admin Dashboard")
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+      expect(page.status_code).to eq(404)
+    end
+
+    it 'does not allow default user to see user profile' do
+
+      visit profile_path
+      expect(page).to_not have_content("Profile")
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+      expect(page.status_code).to eq(404)
+    end
   end
 end
