@@ -12,7 +12,7 @@ RSpec.describe "User Login" do
       fill_in "City", with: "Denver"
       fill_in "State", with: "Colorado"
       fill_in "Zip", with: 80501
-      click_button "Create Profile"
+      click_button "Create User"
       @new_user = User.last
     end
 

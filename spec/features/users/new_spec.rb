@@ -14,12 +14,12 @@ RSpec.describe "New User Form" do
     fill_in "Name", with: "John Smith"
     fill_in "Password", with: "password123"
     fill_in "Password confirmation", with: "password123"
-    fill_in "address", with: "123 Main St"
+    fill_in "Address", with: "123 Main St"
     fill_in "City", with: "Denver"
     fill_in "State", with: "Colorado"
     fill_in "Zip", with: 80501
 
-    click_button "Create Profile"
+    click_button "Create User"
 
     new_user = User.last
     expect(page).to have_content("You have been registered and logged in!")
@@ -38,12 +38,12 @@ RSpec.describe "New User Form" do
       fill_in "Name", with: "John Smith"
       fill_in "Password", with: "password123"
       fill_in "Password confirmation", with: "password123"
-      fill_in "address", with: "123 Main St"
+      fill_in "Address", with: "123 Main St"
       fill_in "City", with: "Denver"
       fill_in "State", with: "Colorado"
       fill_in "Zip", with: 80501
 
-      click_button "Create Profile"
+      click_button "Create User"
 
       expect(current_path).to eq(users_path)
       expect(page).to have_content("User name can't be blank")
@@ -64,7 +64,7 @@ RSpec.describe "New User Form" do
       fill_in "State", with: "Colorado"
       fill_in "Zip", with: 80501
 
-      click_button "Create Profile"
+      click_button "Create User"
 
 
       visit new_user_path
@@ -78,7 +78,7 @@ RSpec.describe "New User Form" do
       fill_in "State", with: "Colorado"
       fill_in "Zip", with: 80501
 
-      click_button "Create Profile"
+      click_button "Create User"
 
       expect(page).to have_content("User name has already been taken")
     end
