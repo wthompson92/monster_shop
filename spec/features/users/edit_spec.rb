@@ -27,7 +27,7 @@ RSpec.describe do
         click_button "Update User"
       end
 
-      it "I am returned to my profile page and I see a flash message telling me that my data is updated. I see my updated information" do
+      xit "I am returned to my profile page and I see a flash message telling me that my data is updated. I see my updated information" do
 
 
         fill_in "Name", with: "John Smith"
