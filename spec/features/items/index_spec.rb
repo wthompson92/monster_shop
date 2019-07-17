@@ -86,8 +86,9 @@ RSpec.describe 'Item Index Page' do
 
     it 'I see stats for the 5 most popular items and 5 least popular items, plus the quantity' do
 
-      @iheartmonsters = User.create!(user_name: "iheartmonsters", password_digest: "Monsters!", address: "666 Hells Gate", address: "666 Hells Gate", city: "Hell", state: "LA", zip: "71220")
-      @monsterlover = User.create!(user_name: "monsterlover", password_digest: "mynameiskyle", address: "some corner store", state: "SD", zip:"54321" )
+      @iheartmonsters = User.create!(name: "Lucifer", user_name: "iheartmonsters", password: "Monsters!", address: "666 Hells Gate", city: "Hell", state: "LA", zip: "71220")
+
+      @monsterlover = User.create!(name: "Kyle", user_name: "monsterlover", password: "mynameiskyle", address: "some corner store", city: "Monsterville", state: "SD", zip:"54321")
 
       @order_1 = @iheartmonsters.orders.create!
       @order_1 << [@ogre, @ogre, @giant, @giant, @dragon, @dragon, @ghoul, @ghoul, @fairy, @fairy]
