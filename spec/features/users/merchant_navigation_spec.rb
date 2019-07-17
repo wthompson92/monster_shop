@@ -3,7 +3,7 @@
 # RSpec.describe "Merchant Navigation" do
 #   descibe "As a user who works for a merchant" do
 #     it "My navigation bar includes the following:" do
-#       merchant = User.create!(user_name: "nathan@gmail.com", password: "password123", role: 2, address: "123 Market St", city: "Denver", state: "CO", zip: 80012 )
+#       merchant = User.create!(user_name: "nathan@gmail.com", password: "password123", role: 2, name: "Nathan", address: "123 Market St", city: "Denver", state: "CO", zip: 80012 )
 
 # =>    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
 #

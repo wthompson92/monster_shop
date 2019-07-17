@@ -25,6 +25,13 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
 
+  get '/profile', to: 'users#show', as: :profile
 
+  namespace :merchant_users do
+    resources :users
+  end
 
+  namespace :admin do
+    resources :users
+  end
 end

@@ -4,9 +4,11 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  # ADD IF STATEMENT SO YOU KNOW WHICH ONE OF THESE TO USE
   def show
-     @user = User.find(params[:id])
-   end
+    @user = current_user
+    # @user = User.find(params[:id])
+  end
 
   def new
     @user = User.new(user_params)
@@ -16,8 +18,8 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      redirect_to user_path(user)
       flash[:success] = "#{user.user_name} created"
+      redirect_to profile_path #user_path(user)
     else
       render :new
       generate_flash(user)
