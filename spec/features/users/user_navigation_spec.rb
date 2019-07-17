@@ -29,9 +29,9 @@ RSpec.describe "User Navigation" do
       expect(page).to have_link("Profile")
       expect(page).to have_link("Logout")
 
-      # expect(page).to have_content("Logged in as Jori")
+      expect(page).to have_content("Logged in as Jori")
 
-      # expect(page).not_to have_link("Login")
+      expect(page).not_to have_link("Login")
       expect(page).not_to have_link("Register")
     end
   end
