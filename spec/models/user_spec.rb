@@ -1,7 +1,9 @@
 require 'rails_helper'
 
-describe User, type: :model do
-  describe "validations" do
+
+RSpec.describe User, type: :model do
+  describe "Validations" do
+    it {should validate_presence_of(:name)}
     it {should validate_presence_of(:user_name)}
     it {should validate_uniqueness_of(:user_name)}
     it {should validate_presence_of(:password)}
@@ -33,5 +35,8 @@ describe User, type: :model do
       expect(user_3.role).to eq("user")
       expect(user_3.user?).to be_truthy
     end
+
+   describe "Relationships" do
+     it {should have_many(:orders)}
   end
 end
