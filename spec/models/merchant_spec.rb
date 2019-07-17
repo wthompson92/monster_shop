@@ -44,8 +44,7 @@ RSpec.describe Merchant do
     end
 
     it '.distinct_cities' do
-
-      expect(@megan.distinct_cities).to eq(['Denver, CO', 'Denver, IA'])
+      expect(@megan.distinct_cities).to eq(['Denver, CO'])
     end
   end
 end
