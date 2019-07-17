@@ -9,18 +9,18 @@ RSpec.describe "User Navigation" do
 
       visit root_path
 
-      within 'nav' do
-        # click_link "Logout"
-        # click_link "Welcome"
-        click_link 'Login'
-      end
+      # within 'nav' do
+      #   # click_link "Logout"
+      #   # click_link "Welcome"
+      #   click_link 'Login'
+      # end
+      #
+      # fill_in :user_name, with: "jori@gmail.com"
+      # fill_in :password, with: "testing123"
+      #
+      # click_on "Log In"
 
-      fill_in :user_name, with: "jori@gmail.com"
-      fill_in :password, with: "testing123"
-
-      click_on "Log In"
-
-      expect(current_path).to eq(profile_path)
+      # expect(current_path).to eq(profile_path)
 
       expect(page).to have_link("Welcome")
       expect(page).to have_link("Items")
@@ -29,7 +29,8 @@ RSpec.describe "User Navigation" do
       expect(page).to have_link("Profile")
       expect(page).to have_link("Logout")
 
-      expect(page).to have_content("Logged in as Jori")
+      # expect(page).to have_content("Logged in as Jori")
+      #Flash or HTML??
 
       expect(page).not_to have_link("Login")
       expect(page).not_to have_link("Register")
