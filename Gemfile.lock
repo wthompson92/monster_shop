@@ -24,6 +24,7 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_designer (0.0.3)
     activejob (5.1.7)
       activesupport (= 5.1.7)
       globalid (>= 0.3.6)
@@ -150,7 +151,9 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+
     regexp_parser (1.6.0)
+
     rspec-core (3.8.2)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.4)
@@ -227,6 +230,8 @@ PLATFORMS
   x86-mswin32
 
 DEPENDENCIES
+  active_designer
+
   bcrypt (~> 3.1.7)
   byebug
   capybara
