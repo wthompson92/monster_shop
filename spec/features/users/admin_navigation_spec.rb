@@ -1,29 +1,49 @@
-# require 'rails_helper'
-#
-# RSpec.describe "Merchant Navigation" do
-#   descibe "As a user who works for a merchant" do
-#     it "My navigation bar includes the following:" do
-#       admin = User.create!(user_name: "andrew@gmail.com", password: "thinking123", role: 3, address: "333 Market St", city: "Denver", state: "CO", zip: 80012 )
-#
-# =>    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-#
-#       visit root_path
-#
-#       fill_in :user_name, with "andrew@gmail.com"
-#       fill_in :password, with "thinking123"
-#
-#       expect(current_path).to eq(admin_user_path(admin))
-#
-#       expect(page).to have_link("Welcome")
-#       expect(page).to have_link("Items")
-#       expect(page).to have_link("Merchants")
-#       expect(page).to have_link("Admin Dashboard")
-#       expect(page).to have_link("Logout")
-#       expect(page).to have_link("All Users")
+require 'rails_helper'
 
-        # expect(page).not_to have_link("Cart")
-        # expect(page).not_to have_link("Login")
-        # expect(page).not_to have_link("Register")
-#     end
-#   end
-# end
+RSpec.describe "Admin Navigation" do
+  describe "As an admin" do
+    it "My navigation bar includes the following:" do
+      admin = User.create!(user_name: "andrew@gmail.com", password: "thinking123", role: 2, name: "Andrew", address: "333 Market St", city: "Denver", state: "CO", zip: 80012 )
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit root_path
+
+      expect(page).to have_link("Welcome")
+      expect(page).to have_link("Items")
+      expect(page).to have_link("Merchants")
+      expect(page).to have_link("Admin Dashboard")
+      expect(page).to have_link("Logout")
+      expect(page).to have_link("All Users")
+
+      expect(page).not_to have_link("Cart")
+      expect(page).not_to have_link("Login")
+      expect(page).not_to have_link("Register")
+    end
+
+    it 'does not allow admin to see merchant dashboard' do
+
+      visit merchant_dashboard_path
+
+      expect(page).to_not have_content("Admin Dashboard")
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+      expect(page.status_code).to eq(404)
+    end
+
+    it 'does not allow admin to see user profile' do
+
+      visit profile_path
+      expect(page).to_not have_content("Profile")
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+      expect(page.status_code).to eq(404)
+    end
+
+    # it 'does not allow admin to see user the cart' do
+    #
+    #   visit cart_path
+    #   expect(page).to_not have_content("Cart")
+    #   expect(page).to have_content("The page you were looking for doesn't exist.")
+    #   expect(page.status_code).to eq(404)
+    # end
+  end
+end
