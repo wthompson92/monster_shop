@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe do
   describe "User Show Page" do
     before :each do
