@@ -22,11 +22,13 @@ RSpec.describe "New User Form" do
     click_button "Create Profile"
 
     new_user = User.last
-
+    expect(page).to have_content("You have been registered and logged in!")
     expect(page).to have_content("John Smith")
     expect(page).to have_content("123 Main St")
     expect(page).to have_content("Denver")
     expect(page).to have_content("Colorado")
+    expect(current_path).to eq(user_path(new_user))
+
   end
 
   describe "If I do not fill in the form completely" do

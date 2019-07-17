@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       redirect_to user_path(user)
-      flash[:success] = "Account created!"
+      flash[:success] = "You have been registered and logged in!"
     else
       flash.now[:error] = user.errors.full_messages.to_sentence
       render :new
