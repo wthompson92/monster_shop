@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   end
 
   def show
-     @user = User.find(params[:id])
-   end
+    @user = User.find(params[:id])
+  end
 
   def new
     @user = User.new
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       flash[:success] = "Your profile has been updated!"
     else
       flash.now[:error] = @user.errors.full_messages.to_sentence
-    render :edit
+      render :edit
     end
   end
 
@@ -43,9 +43,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :user_name, :password, :password_confirmation, :address, :zip, :city, :state)
-    end
+  end
 
-    # def user_edit_params
-    #   params.require(:user).permit(:name, :user_name, :address, :zip, :city, :state)
-    # end
+  # def user_edit_params
+  #   params.require(:user).permit(:name, :user_name, :address, :zip, :city, :state)
+  # end
 end
