@@ -1,7 +1,9 @@
 require 'rails_helper'
 
-describe User, type: :model do
-  describe "validations" do
+
+RSpec.describe User, type: :model do
+  describe "Validations" do
+    it {should validate_presence_of(:name)}
     it {should validate_presence_of(:user_name)}
     it {should validate_uniqueness_of(:user_name)}
     it {should validate_presence_of(:password)}
@@ -10,6 +12,9 @@ describe User, type: :model do
     it {should validate_presence_of(:zip)}
     it {should validate_presence_of(:city)}
     it {should validate_presence_of(:state)}
+  end
 
+   describe "Relationships" do
+     it {should have_many(:orders)}
   end
 end
