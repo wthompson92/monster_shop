@@ -1,22 +1,22 @@
 
-<%= form_tag user_path(@user), method: :patch do%>
-	<%= label_tag :name %>
-	<%= text_field_tag :name, @user.name %>
+<%= form_for @user do |f|%>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
 <br>
-	<%= label_tag :user_name %>
-	<%= text_field_tag :user_name, @user.user_name%>
-<br>
+	<%= f.label :user_name %>
+	<%= f.text_field :user_name %>
+	<br>
 	<%= label_tag :address %>
-  <%= text_field_tag :address, @user.address %>
+  <%= f.text_field :address %>
 <br>
-	<%= label_tag :city %>
-  <%= text_field_tag :city, @user.city%>
+	<%= f.label :city %>
+  <%= f.text_field :city%>
 <br>
-	<%= label_tag :state %>
-  <%= text_field_tag :state, @user.state %>
+	<%= f.label :state %>
+  <%= f.text_field :state%>
 <br>
-	<%= label_tag :zip%>
-  <%= text_field_tag :zip, @user.zip%>
+	<%= f.label :zip%>
+  <%= f.text_field :zip%>
 <br>
-  <%= submit_tag 'Update Profile' %>
+  <%= f.submit %>
 <% end %>

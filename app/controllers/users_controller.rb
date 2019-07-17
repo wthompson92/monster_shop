@@ -9,17 +9,17 @@ class UsersController < ApplicationController
    end
 
   def new
-    @user = User.new(user_params)
+    @user = User.new
   end
 
   def create
-    user = User.new(user_params)
-    if user.save
-      session[:user_id] = user.id
-      redirect_to user_path(user)
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
       flash[:success] = "You have been registered and logged in!"
     else
-      flash.now[:error] = user.errors.full_messages.to_sentence
+      flash.now[:error] = @user.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -42,9 +42,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name, :user_name, :password, :password_confirmation, :address, :zip, :city, :state)
-  
-
-  user_params
-  end
+    params.require(:user).permit(:name, :user_name, :password, :password_confirmation, :address, :zip, :city, :state)
+    end
 end
