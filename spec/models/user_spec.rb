@@ -14,6 +14,10 @@ RSpec.describe User, type: :model do
     it {should validate_presence_of(:state)}
   end
 
+  describe "Relationships" do
+    it {should have_many(:orders)}
+  end
+
   describe "roles" do
     it "can be created as an admin" do
       user = User.create!(user_name: "andrew@gmail.com", password: "thinking123", role: 2, name: "Andrew", address: "333 Market St", city: "Denver", state: "CO", zip: 80012 )
@@ -34,9 +38,6 @@ RSpec.describe User, type: :model do
 
       expect(user_3.role).to eq("user")
       expect(user_3.user?).to be_truthy
-    end
-
-   describe "Relationships" do
-     it {should have_many(:orders)}
+    end  
   end
 end
