@@ -16,6 +16,7 @@ RSpec.describe "User Login" do
       click_link "Logout"
       expect(current_path).to eq(root_path)
       expect(page).to have_content("Welcome")
+      expect(page).to have_content("You have been logged out")
     end
   end
   end

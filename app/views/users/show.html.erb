@@ -1,7 +1,8 @@
 <h1> <%= @user.name %><h1>
   <ul>
-    <li> <p> Address: <%= @user.address %> </h5></li>
+    <li> <p> Address: <%= @user.address %> </p></li>
     <li> <p>City: <%= @user.city %> </p></li>
     <li> <p>Zip: <%= @user.zip %></p></li>
     <li> <p>State: <%= @user.state %></p></li>
+    <li> <%= link_to "Edit", edit_user_path(@user) %></li>
 </ul>
