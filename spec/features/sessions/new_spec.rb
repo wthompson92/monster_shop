@@ -27,7 +27,7 @@ RSpec.describe "User Login" do
     expect(current_path).to eq(user_path(@new_user))
     end
 
-    it "When I click the link to login I am taken to a login form" do
+    it "When I fill in with wrong credentials, i am redirected to login page and I get a flash message telling me that username/password invalid." do
       visit root_path
       click_link "Login"
       expect(current_path).to eq(login_path)

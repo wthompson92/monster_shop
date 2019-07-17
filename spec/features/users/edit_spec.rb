@@ -43,6 +43,7 @@ RSpec.describe do
         expect(page).to have_content("New York")
         expect(page).to have_content("00000")
         expect(page).to_not have_content("password")
+        expect(page).to have_content("Your profile has been updated!")
       end
     end
   end

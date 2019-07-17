@@ -34,7 +34,6 @@ RSpec.describe "New User Form" do
   describe "If I do not fill in the form completely" do
     it "re-renders the user creation  form with a flash message for missing fields" do
       visit new_user_path
-
       fill_in "Name", with: "John Smith"
       fill_in "Password", with: "password123"
       fill_in "Password confirmation", with: "password123"
