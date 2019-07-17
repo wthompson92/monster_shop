@@ -17,17 +17,16 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       redirect_to user_path(user)
-      flash[:success] = "#{user.user_name} created"
+      flash[:success] = "Account created!"
     else
+      flash.now[:error] = user.errors.full_messages.to_sentence
       render :new
-      generate_flash(user)
     end
   end
-
 
   private
 
   def user_params
-      params.permit(:name, :user_name, :password, :address, :zip, :city, :state)
+      params.permit(:name, :user_name, :password, :password_confirmation, :address, :zip, :city, :state)
   end
 end
