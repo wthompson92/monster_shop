@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
+  before_action :require_current_user, only: [:show]
 
   def index
     @users = User.all
   end
 
+  # ADD IF STATEMENT SO YOU KNOW WHICH ONE OF THESE TO USE
   def show
-    @user = User.find(params[:id])
+    @user = current_user
+    # @user = User.find(params[:id])
   end
 
   def new
@@ -16,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      redirect_to profile_path(@user)
       flash[:success] = "You have been registered and logged in!"
     else
       flash.now[:error] = @user.errors.full_messages.to_sentence
@@ -44,8 +47,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :user_name, :password, :password_confirmation, :address, :zip, :city, :state)
   end
-
-  # def user_edit_params
-  #   params.require(:user).permit(:name, :user_name, :address, :zip, :city, :state)
-  # end
 end

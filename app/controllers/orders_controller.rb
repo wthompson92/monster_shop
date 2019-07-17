@@ -7,7 +7,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.new(order_params)
+    @user = User.find(params[:user_id])
+    order = @user.orders.new(order_params)
     if order.save
       cart.items.each do |item|
         order.order_items.create({
@@ -27,6 +28,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:name, :address, :city, :state, :zip)
+    params.permit(:status)
   end
 end

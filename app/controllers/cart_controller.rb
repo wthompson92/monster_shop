@@ -1,4 +1,6 @@
 class CartController < ApplicationController
+  before_action :require_current_user
+
   def add_item
     item = Item.find(params[:item_id])
     session[:cart] ||= {}
