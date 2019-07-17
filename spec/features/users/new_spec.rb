@@ -44,7 +44,7 @@ RSpec.describe "New User Form" do
       click_button "Create Profile"
 
       expect(current_path).to eq(users_path)
-      expect(page).to have_content("user_name: [\"can't be blank\"]")
+      expect(page).to have_content("User name can't be blank")
     end
   end
 
@@ -56,8 +56,8 @@ RSpec.describe "New User Form" do
       fill_in "Name", with: "John Smith"
       fill_in "User name", with: "jsmith123"
       fill_in "Password", with: "password123"
-      # fill_in "Confirm password", with: "password123"
-      fill_in "address", with: "123 Main St"
+      fill_in "Password confirmation", with: "password123"
+      fill_in "Address", with: "123 Main St"
       fill_in "City", with: "Denver"
       fill_in "State", with: "Colorado"
       fill_in "Zip", with: 80501
@@ -70,8 +70,8 @@ RSpec.describe "New User Form" do
       fill_in "Name", with: "John Smith"
       fill_in "User name", with: "jsmith123"
       fill_in "Password", with: "password123"
-      # fill_in "Confirm password", with: "password123"
-      fill_in "address", with: "123 Main St"
+      fill_in "Password confirmation", with: "password123"
+      fill_in "Address", with: "123 Main St"
       fill_in "City", with: "Denver"
       fill_in "State", with: "Colorado"
       fill_in "Zip", with: 80501
