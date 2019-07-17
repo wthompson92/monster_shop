@@ -18,10 +18,13 @@
       <%= link_to 'Welcome', '/' %>
       <%= link_to 'Merchants', '/merchants' %>
       <%= link_to 'Items', '/items' %>
-      <%= link_to "Cart: #{cart.count}", cart_path %>
+      <%= link_to "Cart: #{cart.count}", cart_path unless current_admin? %>
       <%= link_to "Login", login_path unless current_user %>
       <%= link_to "Profile", profile_path if current_user %>
       <%= link_to "Merchant Dashboard", merchants_path if current_merchant? %>
+      <%= link_to "Admin Dashboard", '/admin' if current_admin? %>
+      <%= link_to "All Users", admin_users_path if current_admin? %>
+
       <%= link_to "Register", new_user_path unless current_user %>
       <%= link_to "Logout", logout_path , method: :delete if current_user %>
       <%= "Logged in as #{current_user.name}" if current_user %>
