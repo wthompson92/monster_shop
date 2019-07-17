@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
      session[:user_id] = user.id
       redirect_to profile_path#user_path(user)
-      flash[:notice] = "Logged in a #{user.name}"
+      flash[:success] = "Logged in a #{user.name}"
     else
-      flash.now[:alert] = "user name and/or password invalid."
+      flash.now[:alert] = "User name and/or password invalid."
       render :new
     end
   end
