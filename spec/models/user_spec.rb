@@ -27,11 +27,11 @@ describe User, type: :model do
       expect(user_2.merchant_user?).to be_truthy
     end
 
-    # it "can be created as an reg_user" do
-    #    user_3 = User.create!(user_name: "jori@gmail.com", password: "testing123", role: 0, name: "Jori", address: "123 Market St", city: "Denver", state: "CO", zip: 80012 )
-    #
-    #   expect(user_3.role).to eq("user")
-    #   expect(user_3.merchant?).to be_truthy
-    # end
+    it "can be created as an reg_user" do
+       user_3 = User.create!(user_name: "jori@gmail.com", password: "testing123", role: 0, name: "Jori", address: "123 Market St", city: "Denver", state: "CO", zip: 80012 )
+
+      expect(user_3.role).to eq("user")
+      expect(user_3.user?).to be_truthy
+    end
   end
 end
