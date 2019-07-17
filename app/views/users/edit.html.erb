@@ -1,0 +1,22 @@
+
+<%= form_tag user_path(@user), method: :patch do%>
+	<%= label_tag :name %>
+	<%= text_field_tag :name, @user.name %>
+<br>
+	<%= label_tag :user_name %>
+	<%= text_field_tag :user_name, @user.user_name%>
+<br>
+	<%= label_tag :address %>
+  <%= text_field_tag :address, @user.address %>
+<br>
+	<%= label_tag :city %>
+  <%= text_field_tag :city, @user.city%>
+<br>
+	<%= label_tag :state %>
+  <%= text_field_tag :state, @user.state %>
+<br>
+	<%= label_tag :zip%>
+  <%= text_field_tag :zip, @user.zip%>
+<br>
+  <%= submit_tag 'Update Profile' %>
+<% end %>
