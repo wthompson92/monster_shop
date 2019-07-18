@@ -20,6 +20,8 @@ RSpec.describe "Visitor Cannot Checkout" do
       expect(page).to have_content("You must be registered or logged in to continue")
       expect(page).to have_link("Register")
       expect(page).to have_link("Log In")
+
+			expect(page).not_to have_content(@ogre.name)
     end
 	end
 end

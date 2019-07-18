@@ -1,5 +1,5 @@
 class CartController < ApplicationController
-  before_action :require_current_reg_user || :require_merchant_admin, only: [:empty, :remove_item, :update_quantity]
+  before_action :require_current_reg_user || :require_merchant_admin ||:require_current_merchant_employee, only: [:empty, :remove_item, :update_quantity]
 	before_action :deny_admin
 
   def add_item
