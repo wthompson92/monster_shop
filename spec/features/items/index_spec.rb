@@ -66,11 +66,27 @@ RSpec.describe 'Item Index Page' do
       @ghoul = @brian.items.create!(name: 'Ghoul', description: "I'm a Ghoul", price: 99, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
       @unicorn = @brian.items.create!(name: 'Unicorn', description: "I'm a Unicorn!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: false, inventory: 8 )
 
+      @user_1 = User.create!(name: "Lucifer", user_name: "iheartmonsters", password: "Monsters!", address: "666 Hells Gate", city: "Hell", state: "LA", zip: "71220")
+      @user_2 = User.create!(name: "Kyle", user_name: "monsterlover", password: "mynameiskyle", address: "some corner store", city: "Monsterville", state: "SD", zip:"54321")
+
+      @order_1 = @user_1.orders.create!
+      @order_2 = @user_2.orders.create!
+
+      @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)
+      @order_1.order_items.create!(item: @giant, price: @giant.price, quantity: 2)
+      @order_1.order_items.create!(item: @dragon, price: @dragon.price, quantity: 2)
+      @order_1.order_items.create!(item: @ghoul, price: @ghoul.price, quantity: 2)
+      @order_1.order_items.create!(item: @fairy, price: @fairy.price, quantity: 2)
+
+      @order_2.order_items.create!(item: @yeti, price: @yeti.price, quantity: 1)
+      @order_2.order_items.create!(item: @warewolf, price: @warewolf.price, quantity: 1)
+      @order_2.order_items.create!(item: @mermaid, price: @mermaid.price, quantity: 1)
+      @order_2.order_items.create!(item: @hippo, price: @hippo.price, quantity: 1)
+
     end
 
     it 'I can see all items except for disabled items' do
       visit '/items'
-
       expect(page).to have_content(@ogre.name)
       expect(page).to have_no_content(@unicorn.name)
       expect(page).to have_no_content(@unicorn.description)
@@ -85,32 +101,24 @@ RSpec.describe 'Item Index Page' do
     end
 
     it 'I see stats for the 5 most popular items and 5 least popular items, plus the quantity' do
-
-      @iheartmonsters = User.create!(name: "Lucifer", user_name: "iheartmonsters", password: "Monsters!", address: "666 Hells Gate", city: "Hell", state: "LA", zip: "71220")
-
-      @monsterlover = User.create!(name: "Kyle", user_name: "monsterlover", password: "mynameiskyle", address: "some corner store", city: "Monsterville", state: "SD", zip:"54321")
-
-      @order_1 = @iheartmonsters.orders.create!
-      @order_1 << [@ogre, @ogre, @giant, @giant, @dragon, @dragon, @ghoul, @ghoul, @fairy, @fairy]
-      @order_2 = @monsterlover.orders.create!
-      @order_2 << [@troll, @yeti, @warewolf, @mermaid, @hippo]
-
       visit '/items'
 
-      expect(page).to have_content("Top Five Items:")
-      expect(page).to have_content("Ogre: 2")
-      expect(page).to have_content("Giant: 2")
-      expect(page).to have_content("Dragon: 2")
+      expect(page).to have_content("Most Popular Items:")
       expect(page).to have_content("Ghoul: 2")
       expect(page).to have_content("Fairy: 2")
+      expect(page).to have_content("Dragon: 2")
+      expect(page).to have_content("Giant: 2")
+      expect(page).to have_content("Ogre: 2")
 
 
       expect(page).to have_content("Least Popular Items:")
-      expect(page).to have_content("Troll: 1")
       expect(page).to have_content("Yeti: 1")
       expect(page).to have_content("Warewolf: 1")
-      expect(page).to have_content("Mermaid: 1")
       expect(page).to have_content("Hippo: 1")
+      expect(page).to have_content("Mermaid: 1")
+      expect(page).to have_content("Ogre: 2")
+
+      save_and_open_page
     end
   end
 end
