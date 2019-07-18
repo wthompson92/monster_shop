@@ -1,5 +1,6 @@
 class CartController < ApplicationController
-  before_action :require_current_user
+  before_action :require_current_reg_user || :require_merchant_admin ||:require_current_merchant_employee, only: [:empty, :remove_item, :update_quantity]
+	before_action :deny_admin
 
   def add_item
     item = Item.find(params[:item_id])
@@ -15,6 +16,9 @@ class CartController < ApplicationController
   end
 
   def show
+		if !current_user
+			flash.now[:notice] = "You must be registered or logged in to continue"
+		end
   end
 
   def empty
