@@ -23,10 +23,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:new, :create, :show]
 
-  resources :users
-  get '/cart', to: 'cart#show'
-
-
+  resources :users, only: [:new, :create, :show]
 
   get '/profile', to: 'users#show', as: :profile
   get '/admin', to: 'admin/users#show', as: :admin_dashboard
