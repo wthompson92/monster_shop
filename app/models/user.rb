@@ -6,6 +6,6 @@ class User < ApplicationRecord
   validates_confirmation_of :password
   validates_presence_of :name, :address, :city, :state, :zip
   has_many :orders
+  belongs_to :merchant, optional: true
   enum role: ["user", "merchant_user", "admin"]
 end
-

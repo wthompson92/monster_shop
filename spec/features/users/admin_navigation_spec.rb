@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "Admin Navigation" do
   describe "As an admin" do
-    it "My navigation bar includes the following:" do
-      admin = User.create!(user_name: "andrew@gmail.com", password: "thinking123", role: 2, name: "Andrew", address: "333 Market St", city: "Denver", state: "CO", zip: 80012 )
+    before :each do
+      @admin = User.create!(user_name: "andrew@gmail.com", password: "thinking123", role: 2, name: "Andrew", address: "333 Market St", city: "Denver", state: "CO", zip: 80012 )
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+    end
+    it "My navigation bar includes the following:" do
 
       visit root_path
 
@@ -25,7 +27,7 @@ RSpec.describe "Admin Navigation" do
 
       visit merchant_dashboard_path
 
-      expect(page).to_not have_content("Admin Dashboard")
+      expect(page).to_not have_content("Merchant Dashboard")
       expect(page).to have_content("The page you were looking for doesn't exist.")
       expect(page.status_code).to eq(404)
     end
@@ -38,12 +40,12 @@ RSpec.describe "Admin Navigation" do
       expect(page.status_code).to eq(404)
     end
 
-    # it 'does not allow admin to see user the cart' do
-    #
-    #   visit cart_path
-    #   expect(page).to_not have_content("Cart")
-    #   expect(page).to have_content("The page you were looking for doesn't exist.")
-    #   expect(page.status_code).to eq(404)
-    # end
+    it 'does not allow admin to see user the cart' do
+
+      visit cart_path
+      expect(page).to_not have_content("Cart")
+      expect(page).to have_content("The page you were looking for doesn't exist.")
+      expect(page.status_code).to eq(404)
+    end
   end
 end

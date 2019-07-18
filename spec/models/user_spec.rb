@@ -3,11 +3,10 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "Validations" do
-    it {should validate_presence_of(:name)}
     it {should validate_presence_of(:user_name)}
     it {should validate_uniqueness_of(:user_name)}
     it {should validate_presence_of(:password)}
-    it {should validate_presence_of(:name)}
+		it {should validate_presence_of(:name)}
     it {should validate_presence_of(:address)}
     it {should validate_presence_of(:zip)}
     it {should validate_presence_of(:city)}
@@ -38,6 +37,6 @@ RSpec.describe User, type: :model do
 
       expect(user_3.role).to eq("user")
       expect(user_3.user?).to be_truthy
-    end  
+    end
   end
 end
