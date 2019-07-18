@@ -10,7 +10,7 @@ RSpec.describe do
         fill_in "User name", with: "jdoe"
         fill_in "Password", with: "password"
         click_button "Log In"
-        visit user_path(@jane)
+        visit profile_path
         click_link "Edit Profile"
       end
 
@@ -37,7 +37,7 @@ RSpec.describe do
         fill_in "State", with: "New York"
         fill_in "Zip", with: "00000"
         click_button "Update User"
-        expect(current_path).to eq(user_path(@jane))
+        expect(current_path).to eq(profile_path)
         expect(page).to have_content("John Smith")
         expect(page).to have_content("456 North St")
         expect(page).to have_content("New York")

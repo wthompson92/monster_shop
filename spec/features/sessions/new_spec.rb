@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "User Login" do
   describe "As a Visitor" do
     before :each do
-      visit new_user_path
+      visit new_profile_path
       fill_in "Name", with: "John Smith"
       fill_in "User name", with: "jsmith123"
       fill_in "Password", with: "password123"
@@ -24,7 +24,7 @@ RSpec.describe "User Login" do
     fill_in "Password", with: "password123"
     click_button "Log In"
 
-    expect(current_path).to eq(user_path(@new_user))
+    expect(current_path).to eq(profile_path)
     end
 
     xit "When I fill in with wrong credentials, i am redirected to login page and I get a flash message telling me that username/password invalid." do

@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to profile_path(@user)
+      redirect_to profile_path
       flash[:success] = "You have been registered and logged in!"
     else
       flash.now[:error] = @user.errors.full_messages.to_sentence
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user)
+      redirect_to profile_path
       flash[:success] = "Your profile has been updated!"
     else
       flash.now[:error] = @user.errors.full_messages.to_sentence
