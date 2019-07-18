@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
      session[:user_id] = user.id
 		 	if current_user.user?
       	redirect_to profile_path
-			elsif current_user.merchant_user?
+			elsif current_user.merchant_admin?
 				redirect_to merchant_dashboard_path
 			elsif current_user.admin?
 				redirect_to admin_dashboard_path

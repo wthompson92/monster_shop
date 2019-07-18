@@ -28,8 +28,8 @@ RSpec.describe User, type: :model do
     it "can be created as an merchant" do
        user_2 = User.create!(user_name: "nathan@gmail.com", password: "password123", role: 1, name: "Nathan", address: "123 Market St", city: "Denver", state: "CO", zip: 80012 )
 
-      expect(user_2.role).to eq("merchant_user")
-      expect(user_2.merchant_user?).to be_truthy
+      expect(user_2.role).to eq("merchant_admin")
+      expect(user_2.merchant_admin?).to be_truthy
     end
 
     it "can be created as an reg_user" do

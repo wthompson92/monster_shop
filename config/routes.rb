@@ -23,13 +23,13 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:new, :create, :show]
 
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create, :show, :edit, :update]
 
   get '/profile', to: 'users#show', as: :profile
-  get '/admin', to: 'admin/users#show', as: :admin_dashboard
-  get '/merchant', to: 'merchant_users/users#show', as: :merchant_dashboard
+  get '/admin', to: 'admin/users#dashboard', as: :admin_dashboard
+  get '/merchant', to: 'merchant_admins/users#dashboard', as: :merchant_dashboard
 
-  namespace :merchant_users do
+  namespace :merchant_admins do
     resources :users
   end
 

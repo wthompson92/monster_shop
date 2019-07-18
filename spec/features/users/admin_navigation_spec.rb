@@ -21,6 +21,7 @@ RSpec.describe "Admin Navigation" do
       expect(page).not_to have_link("Cart")
       expect(page).not_to have_link("Login")
       expect(page).not_to have_link("Register")
+			expect(page).not_to have_link("Profile")
     end
 
     it 'does not allow admin to see merchant dashboard' do
