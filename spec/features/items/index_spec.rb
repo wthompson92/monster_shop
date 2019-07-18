@@ -118,7 +118,6 @@ RSpec.describe 'Item Index Page' do
       expect(page).to have_content("Mermaid: 1")
       expect(page).to have_content("Ogre: 2")
 
-      save_and_open_page
     end
   end
 end
