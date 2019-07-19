@@ -13,26 +13,26 @@ RSpec.describe "Admin Index" do
     end
 
     describe "When I click the Users link in the nav bar"do
-      it  "I am taken to a user index page and see a full list of registered users and each users name is a link" do
-        visit root_path
-        click_link "All Users"
-        expect(current_path).to eq(admin_users_path)
-        expect(page).to have_link(@jori.user_name)
-        # expect(page).to have_content(@jori.created_at)
-        expect(page).to have_content(@jori.role)
+    it  "I am taken to a user index page and see a full list of registered users and each users name is a link" do
+      visit root_path
+      click_link "All Users"
+      expect(current_path).to eq(admin_users_path)
+      expect(page).to have_link(@jori.user_name)
+      expect(page).to have_content(@jori.created_at.to_formatted_s(:short))
+      expect(page).to have_content(@jori.role)
 
-        expect(page).to have_link(@nathan.user_name)
-        # expect(page).to have_content(@nathan.created_at)
-         expect(page).to have_content(@nathan.role)
+      expect(page).to have_link(@nathan.user_name)
+      expect(page).to have_content(@nathan.created_at.to_formatted_s(:short))
+      expect(page).to have_content(@nathan.role)
 
-        expect(page).to have_link(@andrew.user_name)
-        # expect(page).to have_content(@andrew.created_at)
-        expect(page).to have_content(@andrew.role)
+      expect(page).to have_link(@andrew.user_name)
+      expect(page).to have_content(@andrew.created_at.to_formatted_s(:short))
+      expect(page).to have_content(@andrew.role)
 
-        expect(page).to have_link(@will.user_name)
-        # expect(page).to have_content(@will.created_at)
-        expect(page).to have_content(@will.role)
-      end
+      expect(page).to have_link(@will.user_name)
+      expect(page).to have_content(@will.created_at.to_formatted_s(:short))
+      expect(page).to have_content(@will.role)
     end
   end
+end
 end
