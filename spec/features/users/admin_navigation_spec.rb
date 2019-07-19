@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Admin Navigation" do
   describe "As an admin" do
     before :each do
+      @admin = User.create!(user_name: "andrew@gmail.com", password: "thinking123", role: 2, name: "Andrew", address: "333 Market St", city: "Denver", state: "CO", zip: 80012 )
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
