@@ -1,1 +1,13 @@
 <h1>Admin Dashboard</h1>
+
+<h3>All Orders</h3>
+<% @users.each do |user| %>
+  <%user.orders.each do |order|%>
+    <ul>
+        <li>User name: <%= user.user_name %></li>
+        <li>Order Id: <%= order.id %></li>
+        <li>Order Date: <%= order.created_at.to_formatted_s(:short)%></li>
+        <li>Order status: <%= order.status%></li>
+      </ul>
+  <% end  %>
+<% end  %>

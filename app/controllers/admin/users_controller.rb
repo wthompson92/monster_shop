@@ -1,8 +1,7 @@
 class Admin::UsersController < Admin::BaseController
 
   def dashboard
-    user = User.all
-
+    @users = User.all
   end
 
   def index
