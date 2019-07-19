@@ -71,17 +71,21 @@ RSpec.describe Item do
       @order_2.order_items.create!(item: @warewolf, price: @warewolf.price, quantity: 1)
       @order_2.order_items.create!(item: @mermaid, price: @mermaid.price, quantity: 1)
       @order_2.order_items.create!(item: @hippo, price: @hippo.price, quantity: 1)
-
     end
 
     it 'returns a hash of top five favorite items and how many times purchased' do
-      
+
       expect(Item.favorite_items).to eq({"Dragon"=>2, "Fairy"=>2, "Ghoul" => 2, "Giant"=>2, "Ogre"=>2})
     end
 
     it 'returns a hash of bottom five items and how many times purchased' do
 
       expect(Item.least_favorite_items).to eq({"Yeti"=>1, "Warewolf"=>1, "Hippo"=>1, "Mermaid"=>1, "Ogre"=>2})
+    end
+
+    it "returns an array of item id's that have been purchased " do
+
+      expect(@troll.purchased).to eq([@ogre.id, @giant.id, @dragon.id, @ghoul.id, @fairy.id, @yeti.id, @warewolf.id, @mermaid.id, @hippo.id])
     end
   end
 end
