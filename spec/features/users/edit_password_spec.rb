@@ -26,5 +26,39 @@ RSpec.describe do
         expect(current_path).to eq(profile_path)
       end
     end
+
+    describe "If I fill in the  edit form, and  include an email address that is already in the system" do
+      it "redirects to the edit form with a flash message saying the username is already taken" do
+
+        visit edit_user_path
+
+        fill_in "Name", with: "John Smith"
+        fill_in "User name", with: "jsmith123"
+        fill_in "Password", with: "password123"
+        fill_in "Password confirmation", with: "password123"
+        fill_in "Address", with: "123 Main St"
+        fill_in "City", with: "Denver"
+        fill_in "State", with: "Colorado"
+        fill_in "Zip", with: 80501
+
+        click_button "Update User"
+
+
+        visit edit_user_path
+
+        fill_in "Name", with: "John Smith"
+        fill_in "User name", with: "jsmith123"
+        fill_in "Password", with: "password123"
+        fill_in "Password confirmation", with: "password123"
+        fill_in "Address", with: "123 Main St"
+        fill_in "City", with: "Denver"
+        fill_in "State", with: "Colorado"
+        fill_in "Zip", with: 80501
+
+        click_button "Update User"
+
+        expect(page).to have_content("User name has already been taken")
+      end
+    end
   end
-end
+  end

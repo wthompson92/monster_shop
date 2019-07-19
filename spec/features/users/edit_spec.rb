@@ -4,6 +4,8 @@ RSpec.describe do
   describe "Edit User Profile" do
     describe "As a registered user, when I visit my profile page" do
       before :each do
+        @will = User.create!(user_name: "wthompson", password: "123",  password_confirmation: "123", name: "Will Thompson", address: "123 Main St", city: "Longmont", state: "Colorado", zip: 80501)
+
         @jane = User.create!(name: "Jane Doe", user_name: "jdoe1234", password: "password",  password_confirmation: "password", address: "123 Main St", city: "Denver", state: "Colorado", zip: 80301)
         visit root_path
         click_link "Login"
@@ -24,7 +26,7 @@ RSpec.describe do
         expect(page).to have_content("80501")
         expect(page).to_not have_content("password")
 
-        click_button "Update Profile"
+        click_button "Update User"
       end
 
       it "I am returned to my profile page and I see a flash message telling me that my data is updated. I see my updated information" do
@@ -37,7 +39,7 @@ RSpec.describe do
         fill_in "City", with: "New York City"
         fill_in "State", with: "New York"
         fill_in "Zip", with: "00000"
-        click_button "Update Profile"
+        click_button "Update User"
         expect(current_path).to eq(profile_path)
         expect(page).to have_content("John Smith")
         expect(page).to have_content("456 North St")
@@ -47,5 +49,12 @@ RSpec.describe do
         expect(page).to have_content("Your profile has been updated!")
       end
     end
+
+    describe "If I include an email address that is already in the system" do
+      it "redirects to the form with a flash message saying the username is already taken" do
+        fill_in "User name", with: "wthompson"
+        expect(page).to have_content("User name has already been taken")
+      end
+    end 
   end
 end

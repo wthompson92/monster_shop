@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show, :edit, :update]
 
   get '/profile', to: 'users#show', as: :profile
+  get '/edit_password', to: 'users#edit_password', as: :edit_password
+  patch '/profile', to: 'users#update_password', as: :update_password
   get '/admin', to: 'admin/users#dashboard', as: :admin_dashboard
   get '/merchant', to: 'merchant_admins/users#dashboard', as: :merchant_dashboard
 
