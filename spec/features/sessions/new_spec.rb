@@ -12,7 +12,6 @@ RSpec.describe "User Login" do
     fill_in "User name", with: "wthompson"
     fill_in "Password", with: "123"
     click_button "Log In"
-    save_and_open_page
 
     expect(current_path).to eq(profile_path)
     end
