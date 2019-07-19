@@ -1,0 +1,10 @@
+<h1>Users Page</h1>
+<% @users.each do |user| %>
+<ul>
+<li><%= link_to user.user_name, admin_user_path(user) %></li>
+<ul>
+  <li> <%= user.created_at.to_formatted_s(:short)  %></li>
+  <li> <%= user.role  %></li>
+</ul>
+</ul>
+<% end %>

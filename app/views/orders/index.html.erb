@@ -1,0 +1,7 @@
+<h1>My Orders</h1>
+
+<% @orders.each do |order| %>
+	<p>Order ID:  <%= order.id %></p>
+	<p>Status: <%= order.status %></p>
+	<p>Order Placed:  <%= order.created_at %></p>
+<% end %>

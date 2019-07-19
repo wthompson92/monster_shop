@@ -50,6 +50,10 @@
     @cart ||= Cart.new(session[:cart])
   end
 
+	def pending_order
+		order.pending?
+	end
+
   def generate_flash(resource)
     resource.errors.messages.each do |validation, message|
       flash[validation] = "#{validation}: #{message}"
