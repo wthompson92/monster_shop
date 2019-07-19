@@ -14,4 +14,27 @@
     <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %>, Inventory: <%= item.inventory %></p>
     <p><%= item.active ? "Active" : "Inactive" %></p>
   </section>
+
 <% end %>
+<hr>
+<hr>
+  <section class= 'most_popular'>
+  <h4>Most Popular Items: </h4>
+  <% @items.favorite_items.each do | name, quantity | %>
+    <ul>
+      <li><%="#{name}: #{quantity}" %></li>
+    </ul>
+  </section>
+  <% end %>
+<hr>
+<hr>
+  <section class= 'least_popular'>
+  <h4>Least Popular Items: </h4>
+  <% @items.least_favorite_items.each do |name, quantity| %>
+    <ul>
+      <li><%="#{name}: #{quantity}" %></li>
+    </ul>
+  </section>
+<% end %>
+<hr>
+<hr>
