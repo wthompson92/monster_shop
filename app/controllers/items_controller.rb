@@ -42,7 +42,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     item = Item.find(params[:id])
     if current_merchant_admin?
       if item.orders.empty?
