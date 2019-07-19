@@ -42,14 +42,35 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    binding.pry
     item = Item.find(params[:id])
-    if item.orders.empty?
-      item.destroy
+    if current_merchant_admin?
+      if item.orders.empty?
+        item.destroy
+        flash[:notice] = "#{item.name} has been deleted."
+      end
+        redirect_to "/merchants/#{params[:merchant_id]}/items"
     else
-      flash[:notice] = "#{item.name} can not be deleted - it has been ordered!"
+      if
+        item.orders.empty?
+        item.destroy
+      else
+        flash[:notice] = "#{item.name} can not be deleted - it has been ordered!"
+      end
+      redirect_to '/items'
     end
-    redirect_to '/items'
   end
+
+
+
+
+  #   if item.orders.empty?
+  #     item.destroy
+  #   else
+  #     flash[:notice] = "#{item.name} can not be deleted - it has been ordered!"
+  #   end
+  #   redirect_to '/items'
+  # end
 
   private
 

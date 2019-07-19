@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :cart, :current_user, :current_reg_user?, :current_merchant_admin?, :current_admin?, :require_current_user, :deny_admin, :current_merchant_employee?
 
