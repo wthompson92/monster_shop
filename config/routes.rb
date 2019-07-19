@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   get '/profile', to: 'users#show', as: :profile
   get '/profile/orders', to: 'orders#index', as: :profile_orders
+  get '/edit_password', to: 'users#edit_password', as: :edit_password
+  patch '/profile', to: 'users#update_password', as: :update_password
   get '/admin', to: 'admin/users#dashboard', as: :admin_dashboard
   get '/merchant', to: 'merchant_admins/users#dashboard', as: :merchant_dashboard
 

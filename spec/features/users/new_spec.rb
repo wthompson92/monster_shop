@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "New User Form" do
   describe "As a visitor, when I click the Register link in the nav bar"
-  xit "takes me to a form where I can create a new user." do
-
+  it "takes me to a form where I can create a new user." do
     visit root_path
 
     click_link "Register"
@@ -27,7 +26,7 @@ RSpec.describe "New User Form" do
     expect(page).to have_content("123 Main St")
     expect(page).to have_content("Denver")
     expect(page).to have_content("Colorado")
-    expect(current_path).to eq(profile_path(user))
+    expect(current_path).to eq(profile_path)
 
   end
 
