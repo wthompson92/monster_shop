@@ -14,7 +14,7 @@ RSpec.describe do
         click_link "Edit Profile"
       end
 
-      xit "I can click a link to edit my profile data and am taken to a new form and the form is prepopulated" do
+      it "I can click a link to edit my profile data and am taken to a new form and the form is prepopulated" do
 
         expect(page).to have_content("Jane Doe")
         expect(page).to have_content("jdoe1234")
@@ -27,8 +27,7 @@ RSpec.describe do
         click_button "Update User"
       end
 
-      xit "I am returned to my profile page and I see a flash message telling me that my data is updated. I see my updated information" do
-
+      it "I am returned to my profile page and I see a flash message telling me that my data is updated. I see my updated information" do
 
         fill_in "Name", with: "John Smith"
         fill_in "User name", with: "Jsmith"
