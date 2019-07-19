@@ -14,7 +14,10 @@
       <p>Price: <%= number_to_currency(item.price) %></p>
       <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %>, Inventory: <%= item.inventory %></p>
       <p><%= item.active ? "Active" : "Inactive" %></p>
+
+    <% unless item.purchased.include? item.id %>
       <p><%= link_to "Delete Item", item_path(item.id, {merchant_id: item.merchant_id}), method: :delete %></p>
+    <% end %>
     </section>
   <% end %>
 <% else %>
