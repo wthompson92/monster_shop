@@ -14,7 +14,7 @@ RSpec.describe 'Create Order' do
 
     end
 
-    xit 'I can click a link to create an order' do
+    it 'I can click a link to create an order' do
 
 			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
@@ -29,13 +29,13 @@ RSpec.describe 'Create Order' do
       click_button 'Check Out'
 
 			order = Order.last
-			# binding.pry
 
-			expect(current_path).to eq("/profile/orders")
-			save_and_open_page
-			expect(page).to have_content("Pending")
+			expect(page).to have_content(order.id)
+			expect(page).to have_content(order.status)
+			expect(page).to have_content(order.created_at)
 			expect(page).to have_content("Your order was created")
 			expect(page).to have_content("Cart: 0")
+
 		end
   end
 end
