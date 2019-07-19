@@ -18,6 +18,10 @@ class Item < ApplicationRecord
     reviews.average(:rating)
   end
 
+  def purchased
+    OrderItem.all.pluck(:item_id)
+  end
+
   def self.favorite_items
     names = Item.top_5_names
     counts = Item.top_5_quantity
