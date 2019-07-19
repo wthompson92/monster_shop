@@ -7,14 +7,14 @@ RSpec.describe do
         @jane = User.create!(name: "Jane Doe", user_name: "jdoe1234", password: "password",  password_confirmation: "password", address: "123 Main St", city: "Denver", state: "Colorado", zip: 80301)
         visit root_path
         click_link "Login"
-        fill_in "User name", with: "jdoe"
+        fill_in "User name", with: "jdoe1234"
         fill_in "Password", with: "password"
         click_button "Log In"
         visit profile_path
-        click_link "Edit Profile"
       end
 
-      xit "I can click a link to edit my profile data and am taken to a new form and the form is prepopulated" do
+      it "I can click a link to edit my profile data and am taken to a new form and the form is prepopulated" do
+        click_link "Edit Profile"
 
         expect(page).to have_content("Jane Doe")
         expect(page).to have_content("jdoe1234")
@@ -24,11 +24,12 @@ RSpec.describe do
         expect(page).to have_content("80501")
         expect(page).to_not have_content("password")
 
-        click_button "Update User"
+        click_button "Update Profile"
       end
 
-      xit "I am returned to my profile page and I see a flash message telling me that my data is updated. I see my updated information" do
+      it "I am returned to my profile page and I see a flash message telling me that my data is updated. I see my updated information" do
 
+        click_link "Edit Profile"
 
         fill_in "Name", with: "John Smith"
         fill_in "User name", with: "Jsmith"
@@ -36,7 +37,7 @@ RSpec.describe do
         fill_in "City", with: "New York City"
         fill_in "State", with: "New York"
         fill_in "Zip", with: "00000"
-        click_button "Update User"
+        click_button "Update Profile"
         expect(current_path).to eq(profile_path)
         expect(page).to have_content("John Smith")
         expect(page).to have_content("456 North St")

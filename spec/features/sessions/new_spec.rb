@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "User Login" do
   describe "As a Visitor" do
     before :each do
-      visit new_profile_path
+      visit new_user_path
       fill_in "Name", with: "John Smith"
       fill_in "User name", with: "jsmith123"
       fill_in "Password", with: "password123"

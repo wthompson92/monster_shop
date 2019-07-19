@@ -8,7 +8,7 @@ RSpec.describe "New User Form" do
 
     click_link "Register"
 
-    expect(current_path).to eq(new_profile_path)
+    expect(current_path).to eq(new_user_path)
 
     fill_in "User name", with: "jsmith123"
     fill_in "Name", with: "John Smith"
@@ -33,7 +33,7 @@ RSpec.describe "New User Form" do
 
   describe "If I do not fill in the form completely" do
     it "re-renders the user creation  form with a flash message for missing fields" do
-      visit new_profile_path
+      visit new_user_path
       fill_in "Name", with: "John Smith"
       fill_in "Password", with: "password123"
       fill_in "Password confirmation", with: "password123"
@@ -42,7 +42,7 @@ RSpec.describe "New User Form" do
       fill_in "State", with: "Colorado"
       fill_in "Zip", with: 80501
 
-      click_button "Create User"
+      click_button "Create Profile"
 
       expect(current_path).to eq(users_path)
       expect(page).to have_content("User name can't be blank")
@@ -52,7 +52,7 @@ RSpec.describe "New User Form" do
   describe "If I fill in the full form, but include an email address that is already in the system" do
     it "redirects to the form with a flash message saying the username is already taken" do
 
-      visit new_profile_path
+      visit new_user_path
 
       fill_in "Name", with: "John Smith"
       fill_in "User name", with: "jsmith123"
@@ -63,10 +63,10 @@ RSpec.describe "New User Form" do
       fill_in "State", with: "Colorado"
       fill_in "Zip", with: 80501
 
-      click_button "Create User"
+      click_button "Create Profile"
 
 
-      visit new_profile_path
+      visit new_user_path
 
       fill_in "Name", with: "John Smith"
       fill_in "User name", with: "jsmith123"
@@ -77,7 +77,7 @@ RSpec.describe "New User Form" do
       fill_in "State", with: "Colorado"
       fill_in "Zip", with: 80501
 
-      click_button "Create User"
+      click_button "Create Profile"
 
       expect(page).to have_content("User name has already been taken")
     end
