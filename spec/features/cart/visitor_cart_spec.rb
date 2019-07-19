@@ -17,11 +17,11 @@ RSpec.describe "Visitor Cannot Checkout" do
 
       expect(current_path).to eq(cart_path)
 
-      expect(page).to have_content("You must be registered or logged in to continue")
-      expect(page).to have_link("Register")
-      expect(page).to have_link("Log In")
+      expect(page).to have_content("You must register or log in to continue")
+      expect(page).to have_link("register")
+      expect(page).to have_link("log in")
 
-			expect(page).not_to have_content(@ogre.name)
+			expect(page).not_to have_button("Check Out")
     end
 	end
 end

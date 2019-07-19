@@ -16,16 +16,19 @@ Rails.application.routes.draw do
   resources :reviews, only: [:edit, :update, :destroy]
 
   get '/cart', to: 'cart#show'
-  post '/cart/:item_id', to: 'cart#add_item'
+	post '/cart/:item_id', to: 'cart#add_item'
   delete '/cart', to: 'cart#empty'
   patch '/cart/:change/:item_id', to: 'cart#update_quantity'
   delete '/cart/:item_id', to: 'cart#remove_item'
 
-  resources :orders, only: [:new, :create, :show]
+  # resources :orders, only: [:new, :create, :show]
 
-  resources :users, only: [:new, :create, :show, :edit, :update]
+  resources :users, only: [:new, :create, :show, :edit, :update] do
+  	resources :orders, only: [:create, :show]
+  end
 
   get '/profile', to: 'users#show', as: :profile
+  get '/profile/orders', to: 'orders#index', as: :profile_orders
   get '/edit_password', to: 'users#edit_password', as: :edit_password
   patch '/profile', to: 'users#update_password', as: :update_password
   get '/admin', to: 'admin/users#dashboard', as: :admin_dashboard

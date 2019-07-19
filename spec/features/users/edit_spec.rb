@@ -31,6 +31,7 @@ RSpec.describe do
 
       it "I am returned to my profile page and I see a flash message telling me that my data is updated. I see my updated information" do
 
+
         click_link "Edit Profile"
 
         fill_in "Name", with: "John Smith"
