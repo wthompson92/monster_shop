@@ -51,6 +51,9 @@ RSpec.describe "Merchant (Merchant_admin role: 1) Can Delete Unordered Items" do
         expect(page).to have_link("Delete Item")
       end
 
+      within "#item-#{@ogre.id}" do
+        expect(page).to have_no_link("Delete Item")
+      end
     end
 
     it "when I click on 'delete' I am returned to my items index page" do
@@ -65,10 +68,12 @@ RSpec.describe "Merchant (Merchant_admin role: 1) Can Delete Unordered Items" do
     it "I see a flash message saying the item has been deleted and I no longer see this item" do
       visit "/merchants/#{@megan.id}/items"
 
-      within "#item-#{@fairy.id}" do
+      within "#item-#{@dragon.id}" do
         click_link "Delete Item"
-        expect(page).to not_have(@fairy.name)
       end
+
+      expect(page).to_not have_content(@dragon.price)
+      expect(page).to have_content("#{@dragon.name} has been deleted.")
     end
   end
 end
