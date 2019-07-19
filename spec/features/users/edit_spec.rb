@@ -13,19 +13,18 @@ RSpec.describe do
         fill_in "User name", with: "wthompson"
         fill_in "Password", with: "123"
         click_button "Log In"
-        visit profile_path
       end
 
       it "I can click a link to edit my profile data and am taken to a new form and the form is prepopulated" do
 
         click_link "Edit Profile"
-        expect(page).to have_content("Will Thompson")
-        expect(page).to have_content("wthompson")
-        expect(page).to have_content("123 Main St")
-        expect(page).to have_content("Longmont")
-        expect(page).to have_content("Colorado")
-        expect(page).to have_content("80501")
-        expect(page).to_not have_content("password")
+
+        expect(find_field('Name').value).to eq 'Will Thompson'
+        expect(find_field('User name').value).to eq 'wthompson'
+        expect(find_field('Address').value).to eq '123 Main St'
+        expect(find_field('City').value).to eq 'Longmont'
+        expect(find_field('State').value).to eq 'Colorado'
+        expect(find_field('Zip').value).to eq '80501'
         click_button "Update User"
 
       end
@@ -48,13 +47,18 @@ RSpec.describe do
         expect(page).to have_content("00000")
         expect(page).to_not have_content("password")
         expect(page).to have_content("Your profile has been updated!")
-      end
+
     end
 
     describe "If I include an email address that is already in the system" do
       it "redirects to the form with a flash message saying the username is already taken" do
-        fill_in "User name", with: "jpeterson"
+        click_link "Edit Profile"
+        fill_in "User name", with: "ajohnson"
+        click_button "Update User"
+
+        expect(current_path).to eq(user_path(@will))
         expect(page).to have_content("User name has already been taken")
+      end
       end
     end
   end
