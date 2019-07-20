@@ -35,7 +35,9 @@ RSpec.describe do
           click_button 'Check Out'
           visit profile_path
 
-          expect(page).to have_content("My Orders")
+          expect(page).to have_content('My Orders')
+          click_link 'My Orders'
+          expect(current_path).to eq(profile_orders_path)
         end
 
   # And I have orders placed in the system
