@@ -40,9 +40,20 @@ RSpec.describe do
           expect(current_path).to eq(profile_orders_path)
         end
 
-  # And I have orders placed in the system
-  # Then I see a link on my profile page called "My Orders"
-  # When I click this link my URI path is "/profile/orders"
+        it "If I do not have any orders, I do not see the 'My Orders' link" do
+          rick = User.create!(user_name: "Moranis", password: "123",  password_confirmation: "123", name: "Rick Moranis", address: "I Shrunk the Kids", city: "Honey", state: "Colorado", zip: 20202)
+
+          click_link 'Logout'
+
+          visit root_path
+          click_link "Login"
+          fill_in "User name", with: "Moranis"
+          fill_in "Password", with: "123"
+          click_button "Log In"
+
+          visit profile_path
+          expect(page).to_not have_content('My Orders')
+        end
       end
     end
   end
