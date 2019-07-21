@@ -15,6 +15,10 @@
       <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %>, Inventory: <%= item.inventory %></p>
       <p><%= item.active ? "Active" : "Inactive" %></p>
 
+        <% if item.active == false %>
+          <p><%= link_to "Activate Item", merchant_admins_item_path(item.id, {merchant_id: item.merchant_id}), method: :patch %></p>
+        <% end  %>
+
     <% unless item.purchased.include? item.id %>
       <p><%= link_to "Delete Item", item_path(item.id, {merchant_id: item.merchant_id}), method: :delete %></p>
     <% end %>
