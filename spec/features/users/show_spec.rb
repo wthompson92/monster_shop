@@ -73,10 +73,10 @@ RSpec.describe do
           click_link 'My Orders'
 
           expect(page).to have_content("Order ID: #{@order_1.id}")
-          expect(page).to have_content("Status: #{@order_1.status}")
+          expect(page).to have_content("Order Status: #{@order_1.status}")
           expect(page).to have_content("Last Updated: #{@order_1.updated_at}")
           expect(page).to have_content("Order Placed: #{@order_1.created_at}")
-          expect(page).to have_content("Total Quantity: #{@order_1.total_quantity}")
+          expect(page).to have_content("Total Quantity of Items: #{@order_1.total_quantity}")
           expect(page).to have_content("Grand Total: #{number_to_currency(@order_1.grand_total)}")
         end
       end
