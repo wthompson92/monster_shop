@@ -85,7 +85,7 @@ RSpec.describe Item do
 
     it "returns an array of item id's that have been purchased " do
 
-      expect(@troll.purchased).to eq([@ogre.id, @giant.id, @dragon.id, @ghoul.id, @fairy.id, @yeti.id, @warewolf.id, @mermaid.id, @hippo.id])
+      expect(@troll.purchased.sort).to eq([@ogre.id, @giant.id, @dragon.id, @ghoul.id, @fairy.id, @yeti.id, @warewolf.id, @mermaid.id, @hippo.id].sort)
     end
   end
 end

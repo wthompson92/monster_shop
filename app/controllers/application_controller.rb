@@ -16,6 +16,7 @@
 		current_user && current_user.user?
 	end
 
+
 	def require_reg_user
 		unless current_reg_user?
 			render file: "/public/404", status: 404
@@ -24,12 +25,6 @@
 
 	def current_merchant_employee?
 		current_user && current_user.user? && current_user.merchant_id
-	end
-
-	def require_merchant_employee
-		unless current_merchant_employee
-			render file: "/public/404", status: 404
-		end
 	end
 
   def current_merchant_admin?

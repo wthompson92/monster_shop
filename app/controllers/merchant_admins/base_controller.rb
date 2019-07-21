@@ -1,5 +1,5 @@
 class MerchantAdmins::BaseController < ApplicationController
-  before_action :require_merchant_admin
+  before_action :require_merchant_admin || :require_merchant_employee
 
   private
     def require_merchant_admin
@@ -7,4 +7,10 @@ class MerchantAdmins::BaseController < ApplicationController
         render file: "/public/404", status: 404
       end
     end
+
+		def require_merchant_employee
+			unless current_merchant_employee?
+				render file: "/public/404", status: 404
+			end
+		end
 end
