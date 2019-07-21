@@ -19,4 +19,9 @@ class Order < ApplicationRecord
   def sorted
     self.order(:status)
   end
+
+  def cancel_order
+    update_attributes(status: :cancelled)
+    # binding.pry
+  end
 end

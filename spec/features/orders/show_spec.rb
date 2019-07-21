@@ -38,7 +38,9 @@ RSpec.describe "Order Show Page", type: :feature do
       end
 
       it "I see a link to cancel the order only if the order is still pending" do
-
+        expect(page).to have_button('Cancel Order')
+        click_button 'Cancel Order'
+        expect(current_path).to eq(cancel_order_path(@order_1.id))
       end
 
 # I see a button or link to cancel the order only if the order is still pending

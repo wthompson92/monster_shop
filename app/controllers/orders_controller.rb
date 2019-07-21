@@ -31,6 +31,12 @@ class OrdersController < ApplicationController
     end
   end
 
+	def update
+		@order = Order.find(params[:id])
+		@order.cancel_order
+		binding.pry
+	end
+
   private
 
   def order_params
