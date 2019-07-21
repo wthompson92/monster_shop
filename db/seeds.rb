@@ -34,8 +34,8 @@
 @order_2.order_items.create!(item: @hippo, price: @hippo.price, quantity: 2)
 
 
-@nathan = User.create!(user_name: "nthomas", password: "123",  password_confirmation: "123", name: "Nathan Thomas", address: "123 Main St", city: "Gunbarrel", state: "Colorado", zip: 80301)
-@andrew = User.create!(user_name: "ajohnson", password: "123",  password_confirmation: "123", name: "Andrew Johnson", address: "123 Main St", city: "Lakewood", state: "Colorado", zip: 80401)
-@jori = User.create!(user_name: "jpeterson", password: "123",  password_confirmation: "123", name: "Jori Peterson", address: "123 Main St", city: "Westminster", state: "Colorado", zip: 80791)
+@jori = User.create!(user_name: "jpeterson", password: "123",  password_confirmation: "123", role: 0, name: "Jori Peterson", address: "123 Main St", city: "Westminster", state: "Colorado", zip: 80791)
+@nathan = User.create!(user_name: "nthomas", password: "123",  password_confirmation: "123", role: 0, name: "Nathan Thomas", address: "123 Main St", city: "Gunbarrel", state: "Colorado", zip: 80301, merchant_id: @megan.id)
+@andrew = User.create!(user_name: "ajohnson", password: "123",  password_confirmation: "123", role: 1, name: "Andrew Johnson", address: "123 Main St", city: "Lakewood", state: "Colorado", zip: 80401, merchant_id: @megan.id)
 @will = User.create!(user_name: "wthomson", password: "123",  password_confirmation: "123", name: "Will Thompson", address: "123 Main St", city: "Longmont", state: "Colorado", zip: 80501)
 @admin123 = User.create!(user_name: "andrew@gmail.com", password: "thinking123", role: 2, name: "Andrew", address: "333 Market St", city: "Denver", state: "CO", zip: 80012 )

@@ -20,7 +20,7 @@ RSpec.describe "Login Specifics" do
 		it "I am redirected to the my merchant dashboard" do
 
       megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
-      merchant_admin = User.create!(user_name: "nathan@gmail.com", password: "password123", role: 0, name: "Nathan", address: "123 Market St", city: "Denver", state: "CO", zip: 80012, merchant_id: megan.id )
+      merchant_employee = User.create!(user_name: "nathan@gmail.com", password: "password123", role: 0, name: "Nathan", address: "123 Market St", city: "Denver", state: "CO", zip: 80012, merchant_id: megan.id )
 
 			visit login_path
 			fill_in "User name", with: "nathan@gmail.com"
@@ -28,7 +28,7 @@ RSpec.describe "Login Specifics" do
 			click_button "Log In"
 
 			expect(current_path).to eq merchant_dashboard_path
-			expect(page).to have_content("Logged in a #{merchant_admin.name}")
+			expect(page).to have_content("Logged in a #{merchant_employee.name}")
     end
 	end
 
