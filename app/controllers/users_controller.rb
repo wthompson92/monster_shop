@@ -29,6 +29,19 @@ class UsersController < ApplicationController
   end
 
   def edit_password
+    @user = current_user
+
+  end
+
+  def update_password
+    @user = current_user
+    if @user.update(user_params)
+      # Sign in the user by passing validation in case their password changed
+      bypass_sign_in(@user)
+      redirect_to root_path
+    else
+      render "edit"
+    end
   end
 
   def update
@@ -43,8 +56,8 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    @user = User.find(params[:id])
-    if @user.update(user_params)
+    @user = current_user
+    if @user.update(password_params)
       redirect_to profile_path
       flash[:success] = "Your profile has been updated!"
     else
@@ -53,12 +66,18 @@ class UsersController < ApplicationController
     end
   end
 
-
-
   private
 
   def user_params
     params.require(:user).permit(:name, :user_name, :password, :password_confirmation, :address, :zip, :city, :state, :role)
   end
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
+
+
+
+
 
 end
