@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
   resources :merchants do
-    resources :items, only: [:index, :new, :create]
+    resources :items, only: [:index, :new, :create, :update]
   end
 
   resources :items, only: [:index, :show, :edit, :update, :destroy] do
@@ -34,8 +33,18 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin/users#dashboard', as: :admin_dashboard
   get '/merchant', to: 'merchant_admins/users#dashboard', as: :merchant_dashboard
 
+  scope :merchant_admins, module: :merchant_admins do
+    resources :items, only: [:new, :create]
+    #wonder if we should be namespacing all of these routes and having different views for the user and the merchant_admin. Is that what the merchant_admins/users#dashboard is for? 
+  end
+
   namespace :merchant_admins do
     resources :users
+  end
+
+  namespace :merchant_admins do
+    resources :items, only: [:update]
+    #route for merchant items update
   end
 
   namespace :admin do
