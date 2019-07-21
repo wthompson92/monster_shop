@@ -7,3 +7,7 @@
     <li> <p>State: <%= @user.state %></p></li>
     <li> <%= link_to "Edit Profile", edit_user_path(@user) %></li>
   </ul>
+
+<% if !@user.orders.any? == false %>
+  <h3><%= link_to "My Orders", profile_orders_path %></h3>
+<% end %>

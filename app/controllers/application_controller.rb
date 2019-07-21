@@ -16,7 +16,8 @@
 		current_user && current_user.user?
 	end
 
-	def require_current_user
+
+	def require_reg_user
 		unless current_reg_user?
 			render file: "/public/404", status: 404
 		end

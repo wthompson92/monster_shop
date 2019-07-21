@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
 
 	def index
-		# binding.pry
 		@orders = current_user.orders
 	end
 
   def show
+		@order = Order.find(params[:id])
   end
 
   def new
@@ -30,6 +30,12 @@ class OrdersController < ApplicationController
       render :new
     end
   end
+
+	def update
+		@order = Order.find(params[:id])
+		@order.cancel_order
+		binding.pry
+	end
 
   private
 
