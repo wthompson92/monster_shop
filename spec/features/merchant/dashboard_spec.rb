@@ -32,16 +32,16 @@ RSpec.describe "Merchant Dashboard" do
 			expect(page).not_to have_button("Edit")
 		end
 
-		xit "It shows pending orders with merchant's items" do
-
-			visit merchant_dashboard_path
-
-			within "#order-#{@order_1.id}" do
-				expect(page).to have_link(@order_1.id)
-				expect(page).to have_content(@order_1.created_at)
-				expect(page).to have_content(@megan.merchant_quantity)
-				expect(page).to have_content(@megan.merchant_value)
-			end
-		end
+		# it "It shows pending orders with merchant's items" do
+		#
+		# 	visit merchant_dashboard_path
+		#
+		# 	within "#order-#{@order_1.id}" do
+		# 		expect(page).to have_link(@order_1.id)
+		# 		expect(page).to have_content(@order_1.created_at)
+		# 		expect(page).to have_content(@megan.merchant_quantity)
+		# 		expect(page).to have_content(@megan.merchant_value)
+		# 	end
+		# end
 	end
 end
