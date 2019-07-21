@@ -1,5 +1,4 @@
-<% binding.pry %>
-@user.orders
+
 <% @order.order_items.each do |order_item| %>
   <section id='item-<%= order_item.item_id%>'>
     <h2><%= link_to order_item.item.name, "/items/#{order_item.item_id}" %></h2>

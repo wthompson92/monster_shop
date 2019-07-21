@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe do
   describe "User Show Page" do
     before :each do
-      nathan = User.create!(user_name: "nthomas", password: "123",  password_confirmation: "123", name: "Nathan Thomas", address: "123 Main St", city: "Gunbarrel", state: "Colorado", zip: 80301)
+      @nathan = User.create!(user_name: "nthomas", password: "123",  password_confirmation: "123", name: "Nathan Thomas", address: "123 Main St", city: "Gunbarrel", state: "Colorado", zip: 80301)
       visit root_path
       click_link "Login"
       fill_in "User name", with: "nthomas"
@@ -60,7 +60,7 @@ RSpec.describe do
           @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
           @ogre = @megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
           @giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
-          @order_1 = nathan.orders.create!
+          @order_1 = @nathan.orders.create!
           @order_item_1 = @order_1.order_items.create!(price: @ogre.price, quantity: 1, item: @ogre)
 
           visit item_path(@ogre)
@@ -74,18 +74,11 @@ RSpec.describe do
 
           expect(page).to have_content("Order ID: #{@order_1.id}")
           expect(page).to have_content("Status: #{@order_1.status}")
-          expect(page).to have_content("Last Updated: #{@order_1.last_updated}")
+          expect(page).to have_content("Last Updated: #{@order_1.updated_at}")
           expect(page).to have_content("Order Placed: #{@order_1.created_at}")
           expect(page).to have_content("Total Quantity: #{@order_1.total_quantity}")
-          expect(page).to have_content("Grand Total: #{@order_1.grand_total}")
+          expect(page).to have_content("Grand Total: #{number_to_currency(@order_1.grand_total)}")
         end
-      # I see every order I've made, which includes the following information:
-      # - the ID of the order, which is a link to the order show page
-      # - the date the order was made
-      # - the date the order was last updated
-      # - the current status of the order
-      # - the total quantity of items in the order
-      # - the grand total of all items for that order
       end
     end
   end
