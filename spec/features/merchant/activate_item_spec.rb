@@ -41,8 +41,8 @@ RSpec.describe "Merchant (Merchant_admin role: 1) Can Activate an inactive item"
         expect(page).to have_content("Inactive")
         expect(page).to have_link("Activate Item")
         click_link("Activate")
+			end
         expect(page).to have_content("Active")
-      end
       expect(page).to have_content("#{@giant.name} is now for sale.")
     end
   end
