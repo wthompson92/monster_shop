@@ -7,11 +7,11 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
        item.update(active: true)
        item.reload
        flash[:notice] = "#{item.name} is now for sale."
-     end
-   #  else
-   #    item.active = false
-   #    flash[:notice] = "#{item.name} is no longer for sale."
-    # end
+     else
+      item.update(active: false)
+      item.reload
+      flash[:notice] = "#{item.name} is no longer for sale."
+    end
      redirect_to "/merchants/#{params[:merchant_id]}/items"
    end
 end

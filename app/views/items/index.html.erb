@@ -1,4 +1,4 @@
-<% if @merchant %>
+<% if @merchant || current_merchant_admin? %>
   <h1>All Items From <%= link_to @merchant.name, "/merchant/#{@merchant.id}" %></h1>
   <%= link_to 'New Item', "/merchants/#{@merchant.id}/items/new" %>
 <% else %>
@@ -17,6 +17,8 @@
 
         <% if item.active == false %>
           <p><%= link_to "Activate Item", merchant_admins_item_path(item.id, {merchant_id: item.merchant_id}), method: :patch %></p>
+          <% else %>
+            <p><%= link_to "Deactivate Item", merchant_admins_item_path(item.id, {merchant_id: item.merchant_id}), method: :patch %></p>
         <% end  %>
 
     <% unless item.purchased.include? item.id %>
