@@ -30,6 +30,7 @@ RSpec.describe 'Create Order' do
 
 			order = Order.last
 
+			expect(current_path).to eq("/profile/orders")
 			expect(page).to have_content(order.id)
 			expect(page).to have_content(order.status)
 			expect(page).to have_content(order.created_at)
