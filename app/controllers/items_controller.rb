@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
     if current_merchant_admin?
       if item.orders.empty?
         item.destroy
-        flash[:notice] = "#{item.name} has been deleted."
+        flash[:success] = "#{item.name} has been deleted."
       end
         redirect_to "/merchants/#{params[:merchant_id]}/items"
     else
@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
         item.orders.empty?
         item.destroy
       else
-        flash[:notice] = "#{item.name} can not be deleted - it has been ordered!"
+        flash[:danger] = "#{item.name} can not be deleted - it has been ordered!"
       end
       redirect_to '/items'
     end

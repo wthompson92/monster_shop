@@ -2,6 +2,8 @@
   protect_from_forgery with: :exception
   helper_method :cart, :current_user, :current_reg_user?, :current_merchant_admin?, :current_admin?, :require_current_user, :deny_admin, :current_merchant_employee?
 
+  add_flash_types :danger, :info, :warning, :success
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end

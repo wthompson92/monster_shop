@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 			end
       flash[:success] = "Logged in a #{user.name}"
     else
-      flash.now[:alert] = "User name and/or password invalid."
+      flash.now[:danger] = "User name and/or password invalid."
       render :new
     end
   end
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
   def destroy
     session.delete(:user_id)
     session.delete(:cart)
-    flash[:alert] = "You have been logged out"
+    flash[:info] = "You have been logged out"
     redirect_to root_path
   end
 
