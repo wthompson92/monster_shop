@@ -6,6 +6,7 @@ class MerchantAdmins::UsersController < MerchantAdmins::BaseController
 		# @order = @merchant.merchant_orders
 		 # @merchant.merchant_orders.include?(params[:id].to_i)
 		# binding.pry
+	
 	end
 
 end
