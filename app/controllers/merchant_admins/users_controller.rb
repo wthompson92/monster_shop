@@ -4,7 +4,7 @@ class MerchantAdmins::UsersController < MerchantAdmins::BaseController
 		user = current_user
 		@merchant =	 Merchant.find(user.merchant_id)
 		@orders = @merchant.merchant_orders
-		binding.pry
+		# binding.pry
 	end
 
 end

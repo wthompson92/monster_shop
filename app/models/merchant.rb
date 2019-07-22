@@ -25,8 +25,14 @@ class Merchant < ApplicationRecord
                .pluck("CONCAT_WS(', ', users.city, users.state) AS city_state")
   end
 
-	def merchant_orders(merchant_id)
-		Order.joins(:items).where('items.merchant_id = merchant_id)
+	def merchant_orders
+		Order.joins(order_items: :item).where(status: "pending")
+		# order = Order.joins(:items).where('item.merchant_id = merchant_id')
+		# order.where('order.status = pending')
+		# items.joins(:orders).distinct.pluck(:order_id)
+		# items.joins(:orders).where('order.status = pending')
 		# binding.pry
-  end
+		# select('item.merchant_id = merchant_id')
+	end
+
 end
