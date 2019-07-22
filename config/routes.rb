@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   scope :merchant_admins, module: :merchant_admins do
     resources :items, only: [:new, :create]
-    #wonder if we should be namespacing all of these routes and having different views for the user and the merchant_admin. Is that what the merchant_admins/users#dashboard is for? 
+    #wonder if we should be namespacing all of these routes and having different views for the user and the merchant_admin. Is that what the merchant_admins/users#dashboard is for?
   end
 
   namespace :merchant_admins do
@@ -52,4 +52,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
   end
+
+  namespace :admin do
+    resources :merchants, only: [:show]
+  end 
 end
