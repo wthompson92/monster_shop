@@ -12,10 +12,6 @@ class Item < ApplicationRecord
   validates_numericality_of :price, :greater_than => 0
   validates_numericality_of :inventory, :greater_than_or_equal_to => 0
 
-  # validates :name, :description, :image, :price, :inventory, presence: {message: "cannot be missing."}
-  #
-  #validates :price, :inventory, numericality: {message: "must be a valid number."}
-
   def sorted_reviews(limit = nil, order = :asc)
     reviews.order(rating: order).limit(limit)
   end
@@ -68,7 +64,4 @@ private
   def self.bottom_5_quantity
     bottom_five_quantity = OrderItem.all.order(:quantity).select(:quantity).limit(5).pluck(:quantity).flatten
   end
-
 end
-
-  #make model method spec test for items statistics

@@ -75,5 +75,24 @@ RSpec.describe "Merchant (Merchant_admin role: 1) Can add an item" do
       expect(page).to have_content("must be greater than 0")
       expect(page).to have_content("must be greater than or equal to 0")
     end
+
+    it 'a new item cannont be made if fields are missing or incorrect (except image). I am returnted to the form with all fields repopulated with my previous data' do
+      visit "/merchants/#{@megan.id}/items"
+      click_link("Add New Item")
+
+      fill_in('Name', with:'Bigfoot')
+      fill_in('Description', with: '')
+      fill_in('Image', with:'')
+      fill_in('Price', with: -300)
+      fill_in('Inventory', with: 1)
+      click_on("Create Item")
+
+      expect(current_path).to eq("/merchant_admins/items")
+      expect(find_field('Name').value).to eq 'Bigfoot'
+      expect(find_field('Description').value).to eq ''
+      expect(find_field('Image').value).to eq ''
+      expect(find_field('Price').value).to eq '-300'
+      expect(find_field('Inventory').value).to eq '1'
+    end
   end
 end
