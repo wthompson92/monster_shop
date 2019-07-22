@@ -24,6 +24,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_password
+    @user = current_user
+  end
+
+  # def update_password
+  #   @user = current_user
+  #   if @user.update(password_params)
+  #     redirect_to profile_path
+  #     flash[:success] = "Your password has been updated!"
+  #   else
+  #     flash.now[:error] = @user.errors.full_messages.to_sentence
+  #     render :edit_password
+  #   end
+  # end
+
   def edit
     @user = current_user
   end
@@ -35,22 +50,7 @@ class UsersController < ApplicationController
       flash[:success] = "Your profile has been updated!"
     else
       flash.now[:error] = @user.errors.full_messages.to_sentence
-      render :edit
-    end
-  end
-
-  def edit_password
-    @user = current_user
-  end
-
-  def update_password
-    @user = current_user
-    if @user.update(password_params)
-      redirect_to profile_path
-      flash[:success] = "Your profile has been updated!"
-    else
-      flash.now[:error] = @user.errors.full_messages.to_sentence
-      render :edit_password
+      redirect_to :edit
     end
   end
 

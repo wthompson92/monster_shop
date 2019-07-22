@@ -16,8 +16,8 @@ class Order < ApplicationRecord
     order_items.sum(:quantity)
   end
 
-  def sorted
-    self.order(:status)
+  def ship_order
+    self.update_attributes(status: "shipped")
   end
 
   def cancel_order

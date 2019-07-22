@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get '/profile/orders', to: 'orders#index', as: :profile_orders
   get '/profile/order/:id', to: 'orders#show', as: :profile_order
   patch '/profile/order/:id', to: 'orders#update', as: :cancel_order
+  patch '/profile/order/:id', to: 'orders#update', as: :ship_order
   get '/edit_password', to: 'users#edit_password', as: :edit_password
   patch '/profile', to: 'users#update_password', as: :update_password
   get '/admin', to: 'admin/users#dashboard', as: :admin_dashboard
@@ -37,7 +38,7 @@ Rails.application.routes.draw do
 
   scope :merchant_admins, module: :merchant_admins do
     resources :items, only: [:new, :create]
-    #wonder if we should be namespacing all of these routes and having different views for the user and the merchant_admin. Is that what the merchant_admins/users#dashboard is for? 
+    #wonder if we should be namespacing all of these routes and having different views for the user and the merchant_admin. Is that what the merchant_admins/users#dashboard is for?
   end
 
   namespace :merchant_admins do

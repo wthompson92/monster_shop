@@ -1,4 +1,4 @@
-equire 'rails_helper'
+require 'rails_helper'
 
 RSpec.describe "Merchant Edit Item" do
   describe "As a merchant admin" do
@@ -34,8 +34,3 @@ RSpec.describe "Merchant Edit Item" do
     end
   end
 end
-
-
-Then I am returned to the form
-I see one or more flash messages indicating each error I caused
-All fields are re-populated with my previous data
