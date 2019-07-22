@@ -9,6 +9,8 @@ class Item < ApplicationRecord
                         :price,
                         :inventory
 
+  validates_numericality_of :price, :greater_than => 0
+  validates_numericality_of :inventory, :greater_than_or_equal_to => 0
 
   # validates :name, :description, :image, :price, :inventory, presence: {message: "cannot be missing."}
   #

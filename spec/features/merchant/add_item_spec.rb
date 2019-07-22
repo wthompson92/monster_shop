@@ -40,6 +40,7 @@ RSpec.describe "Merchant (Merchant_admin role: 1) Can add an item" do
       expect(current_path).to eq("/merchants/#{@megan.id}/items")
       expect(page).to have_link("Bigfoot")
       expect(page).to have_content("#{@bigfoot} has been saved.")
+
     end
 
     it 'only the image can be left blank and a placeholder image is displayed if that field is left blank' do
@@ -53,9 +54,50 @@ RSpec.describe "Merchant (Merchant_admin role: 1) Can add an item" do
       fill_in('Inventory', with: 1)
       click_on("Create Item")
       expect(current_path).to eq("/merchants/#{@megan.id}/items")
+      #I need a way to test that page has benn given a default image.
+      #Functionality works, test does not.
+    end
+
+    it 'name and description, cannont be blank' do
+      visit "/merchants/#{@megan.id}/items"
+      click_link("Add New Item")
+
+      fill_in('Name', with:'')
+      fill_in('Description', with:'')
+      fill_in('Image', with:'')
+      fill_in('Price', with: 10999)
+      fill_in('Inventory', with: 1)
+      click_on("Create Item")
+      expect(current_path).to eq("/merchant_admins/items")
+      expect(page).to have_content("can't be blank")
+    end
+
+    it 'price and inventory must be valid numbers' do
+      visit "/merchants/#{@megan.id}/items"
+      click_link("Add New Item")
+
+      fill_in('Name', with:'Bigfoot')
+      fill_in('Description', with: 'Illusive, tall, hairy, and has big feet')
+      fill_in('Image', with:'')
+      fill_in('Price', with: -3)
+      fill_in('Inventory', with: -42 )
+      click_on("Create Item")
+      expect(current_path).to eq("/merchant_admins/items")
+      expect(page).to have_content("must be greater than 0")
+      expect(page).to have_content("must be greater than or equal to 0")
     end
 
     it 'on my items page I also see the new item and that it is enabled and available for sale.' do
+      visit "/merchants/#{@megan.id}/items"
+      click_link("Add New Item")
+
+      fill_in('Name', with:'Bigfoot')
+      fill_in('Description', with: 'Illusive, tall, hairy, and has big feet')
+      fill_in('Image', with:'')
+      fill_in('Price', with: 10999)
+      fill_in('Inventory', with: 1)
+      click_on("Create Item")
+      expect(current_path).to eq("/merchants/#{@megan.id}/items")
     end
   end
 end
