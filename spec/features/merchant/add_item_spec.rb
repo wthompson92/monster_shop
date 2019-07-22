@@ -30,6 +30,7 @@ RSpec.describe "Merchant (Merchant_admin role: 1) Can add an item" do
       expect(current_path).to eq("/merchants/#{@megan.id}/items")
       expect(page).to have_link("Bigfoot")
       expect(page).to have_content("#{@bigfoot} has been saved.")
+      save_and_open_page
     end
 
     it 'only the image can be left blank and a placeholder image is displayed if that field is left blank' do

@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
 			flash[:success] = "Your order was created"
       redirect_to "/profile/orders"
     else
-      flash[:notice] = "Please complete address form to create an order."
+      flash[:danger] = "Please complete address form to create an order."
       render :new
     end
   end
