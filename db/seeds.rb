@@ -32,7 +32,7 @@
 @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)
 @order_1.order_items.create!(item: @hippo, price: @hippo.price, quantity: 3)
 @order_2.order_items.create!(item: @hippo, price: @hippo.price, quantity: 2)
-
+@merchant_123 = User.create!(user_name: "anymerchant", password: "123", password_confirmation: "123", role: 1, name: "No Name", address: "123 Main St", city: "Jacksonville", state: "Flordia", zip: 93821)
 
 @jori = User.create!(user_name: "jpeterson", password: "123",  password_confirmation: "123", role: 0, name: "Jori Peterson", address: "123 Main St", city: "Westminster", state: "Colorado", zip: 80791)
 @nathan = User.create!(user_name: "nthomas", password: "123",  password_confirmation: "123", role: 0, name: "Nathan Thomas", address: "123 Main St", city: "Gunbarrel", state: "Colorado", zip: 80301, merchant_id: @megan.id)
