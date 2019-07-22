@@ -1,7 +1,16 @@
 <h1>Merchant Dashboard</h1>
 
- <p><%= @merchant.name %></p>
- <p><%= @merchant.address %></p>
- <p><%= @merchant.city %></p>
- <p><%= @merchant.state %></p>
- <p><%= @merchant.zip %></p>
+	<p><%= @merchant.name %></p>
+	<p><%= @merchant.address %></p>
+	<p><%= @merchant.city %></p>
+	<p><%= @merchant.state %></p>
+	<p><%= @merchant.zip %></p>
+
+<% @orders.each do |order| %>
+<section id='order-<%= @order.id %>'>
+ 	<p><%= order.id %></p>
+ 	<p><%= order.created_at %></p>
+<% end %> %>
+	<p><%= @merchant.merchant_quantity %></p>
+	<p><%= @merchant.merchant_value %></p>
+</section> -->
