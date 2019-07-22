@@ -35,5 +35,11 @@ RSpec.describe Order do
       expect(@order_1.total_quantity).to eq(5)
       expect(@order_2.total_quantity).to eq(2)
     end
+
+    it '.cancel_order' do
+      @order_1.cancel_order
+      
+      expect(@order_1.status).to eq('cancelled')
+    end
   end
 end

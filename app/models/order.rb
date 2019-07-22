@@ -22,6 +22,6 @@ class Order < ApplicationRecord
 
   def cancel_order
     update_attributes(status: :cancelled)
-    # binding.pry
   end
+  
 end

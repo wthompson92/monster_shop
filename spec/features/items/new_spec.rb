@@ -6,15 +6,7 @@ RSpec.describe 'New Merchant Item' do
     before :each do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
     end
-
-    it 'I can click a link to a new item form page' do
-      visit "/merchants/#{@megan.id}/items"
-
-      click_link 'New Item'
-
-      expect(current_path).to eq("/merchants/#{@megan.id}/items/new")
-    end
-
+    
     it 'I can create an  item for a merchant' do
       name = 'Ogre'
       description = "I'm an Ogre!"
