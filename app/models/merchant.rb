@@ -24,4 +24,8 @@ class Merchant < ApplicationRecord
                .distinct
                .pluck("CONCAT_WS(', ', users.city, users.state) AS city_state")
   end
+
+	def merchant_orders
+    items.joins(:orders)
+  end
 end

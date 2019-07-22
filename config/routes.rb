@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   end
 
   namespace :merchant_admins do
-    resources :items, only: [:update]
+    resources :items, only: [:update, :new, :create]
     #route for merchant items update
   end
 

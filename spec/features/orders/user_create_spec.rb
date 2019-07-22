@@ -30,6 +30,7 @@ RSpec.describe 'Create Order' do
 
 			order = Order.last
 
+			expect(current_path).to eq("/profile/orders")
 			expect(page).to have_content(order.id)
 			expect(page).to have_content(order.status)
 			expect(page).to have_content(order.created_at)
@@ -39,10 +40,3 @@ RSpec.describe 'Create Order' do
 		end
   end
 end
-
-# @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
-# @merchant_employee = User.create!(user_name: "nathan_2@gmail.com", password: "password123", role: 0, name: "Nathan_2", address: "888 Market St", city: "Cheyenne", state: "WY", zip: 80012, merchant_id: @megan.id )
-# allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
-#
-# @merchant_admin = User.create!(user_name: "nathan@gmail.com", password: "password123", role: 1, name: "Nathan", address: "123 Market St", city: "Denver", state: "CO", zip: 80012, merchant_id: @megan.id )
-# allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_admin)
