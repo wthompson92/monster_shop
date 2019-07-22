@@ -1,6 +1,7 @@
 <% if @merchant || current_merchant_admin? %>
   <h1>All Items From <%= link_to @merchant.name, "/merchant/#{@merchant.id}" %></h1>
-  <%= link_to 'New Item', "/merchants/#{@merchant.id}/items/new" %>
+  <%= link_to 'Add New Item', new_merchant_admins_item_path %>
+
 <% else %>
   <h1>All Items</h1>
 <% end %>
@@ -24,6 +25,7 @@
     <% unless item.purchased.include? item.id %>
       <p><%= link_to "Delete Item", item_path(item.id, {merchant_id: item.merchant_id}), method: :delete %></p>
     <% end %>
+    <hr>
     </section>
   <% end %>
 <% else %>
@@ -38,7 +40,7 @@
     </section>
   <% end  %>
 <% end %>
-<hr>
+
 <hr>
   <section class= 'most_popular'>
   <h4>Most Popular Items: </h4>

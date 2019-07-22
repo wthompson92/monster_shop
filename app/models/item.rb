@@ -6,9 +6,13 @@ class Item < ApplicationRecord
 
   validates_presence_of :name,
                         :description,
-                        :image,
                         :price,
                         :inventory
+
+
+  # validates :name, :description, :image, :price, :inventory, presence: {message: "cannot be missing."}
+  #
+  #validates :price, :inventory, numericality: {message: "must be a valid number."}
 
   def sorted_reviews(limit = nil, order = :asc)
     reviews.order(rating: order).limit(limit)
