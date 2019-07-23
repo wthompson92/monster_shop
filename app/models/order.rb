@@ -26,6 +26,7 @@ class Order < ApplicationRecord
       oi.fulfilled = false
       oi.item.inventory += oi.quantity
       oi.quantity = 0
+      oi.save
     end
   end
 

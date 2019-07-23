@@ -49,13 +49,19 @@ RSpec.describe Merchant do
 
     it '.disable' do
       @megan.disable
+      @megan.reload
 
+      expect(@ogre.active).to eq(false)
+      expect(@giant.active).to eq(false)
       expect(@megan.enabled).to eq(false)
     end
 
     it '.enable' do
       @megan.enable
+      @megan.reload
 
+      expect(@ogre.active).to eq(true)
+      expect(@giant.active).to eq(true)
       expect(@megan.enabled).to eq(true)
     end
   end

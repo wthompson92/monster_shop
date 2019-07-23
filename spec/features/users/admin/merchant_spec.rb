@@ -35,6 +35,7 @@ RSpec.describe 'Admin Merchant' do
 
       it "Then all of that merchant's items should be deactivated" do
         click_button 'Disable'
+        @ogre.reload
 
         expect(@ogre.active).to eq(false)
       end
@@ -52,6 +53,8 @@ RSpec.describe 'Admin Merchant' do
       it "Then all of that merchant's items should be activated" do
         click_button 'Disable'
         click_button 'Enable'
+        @ogre.reload
+        
         expect(@ogre.active).to eq(true)
       end
     end
