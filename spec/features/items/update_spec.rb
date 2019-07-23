@@ -13,21 +13,20 @@ RSpec.describe 'Update Item Page' do
 
     it 'I can click a link to get to an item edit page' do
       visit merchant_items_path(@megan.id)
-	
+
       click_button 'Update Item'
 
-			# route to merchant_admins_item/item_id
       expect(current_path).to eq(edit_merchant_admins_item_path(@ogre.id))
     end
 
     it 'I can edit the items information' do
-      name = 'Giant'
-      description = "I'm a Giant!"
+      name = 'Ogre'
+      description = "I'm an Ogre!"
       price = 25
       image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw'
       inventory = 12
 
-      visit "/items/#{@ogre.id}/edit"
+      visit edit_merchant_admins_item_path(@ogre.id)
 
       fill_in 'Name', with: name
       fill_in 'Description', with: description
@@ -36,26 +35,30 @@ RSpec.describe 'Update Item Page' do
       fill_in 'Inventory', with: inventory
       click_button 'Update Item'
 
-      expect(current_path).to eq("/items/#{@ogre.id}")
+      expect(current_path).to eq "/merchants/#{@megan.id}/items"
       expect(page).to have_content(name)
       expect(page).to have_content(description)
       expect(page).to have_content("Price: #{number_to_currency(price)}")
       expect(page).to have_content("Active")
       expect(page).to have_content("Inventory: #{inventory}")
+      expect(page).to have_content(" #{@ogre.name} has been updated")
+
     end
 
-    xit 'I can not edit the item with an incomplete form' do
+    it 'I can not edit the item with an incomplete form' do
       name = 'Giant'
 
-      visit "/items/#{@ogre.id}/edit"
+      visit edit_merchant_admins_item_path(@ogre.id)
 
       fill_in 'Name', with: name
+			fill_in 'Description', with: " "
+			fill_in 'Price', with: "abc"
+			fill_in 'Inventory', with: "abc"
       click_button 'Update Item'
-
+			# save_and_open_page
       expect(page).to have_content("description: [\"can't be blank\"]")
-      expect(page).to have_content("price: [\"can't be blank\"]")
-      expect(page).to have_content("image: [\"can't be blank\"]")
-      expect(page).to have_content("inventory: [\"can't be blank\"]")
+      expect(page).to have_content("price: [\"is not a number\"]")
+      expect(page).to have_content("inventory: [\"is not a number\"]")
       expect(page).to have_button('Update Item')
     end
   end

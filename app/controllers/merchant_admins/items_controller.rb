@@ -21,6 +21,7 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
   def new
      user = current_user
      @merchant = Merchant.find(user.merchant_id)
+		 @item = Item.new
   end
 
   def create
@@ -40,6 +41,19 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
 	def edit
     @item = Item.find(params[:id])
   end
+
+	def update
+		user = current_user
+    @merchant = Merchant.find(user.merchant_id)
+		@item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to "/merchants/#{@merchant.id}/items"
+			flash[:success] = "#{@item.name} has been updated"
+    else
+      generate_flash(@item)
+      render :edit
+    end
+	end
 
   private
 
