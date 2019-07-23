@@ -36,23 +36,19 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin/users#dashboard', as: :admin_dashboard
   get '/merchant', to: 'merchant_admins/users#dashboard', as: :merchant_dashboard
 
-  scope :merchant_admins, module: :merchant_admins do
-    resources :items, only: [:new, :create]
-    #wonder if we should be namespacing all of these routes and having different views for the user and the merchant_admin. Is that what the merchant_admins/users#dashboard is for?
-  end
 
   namespace :merchant_admins do
     resources :users
   end
 
-  namespace :merchant_admins do
-    resources :items, only: [:update, :new, :create]
-    #route for merchant items update
+	patch "/merchant_admins/items/:merchant_id/:item_id", to: "merchant_admins/items#activate", as: :activate_items
 
+  namespace :merchant_admins do
+    resources :items, only: [:new, :create, :edit, :update]
   end
   namespace :merchant_admins do
     resources :orders, only: [:show]
-  end 
+  end
 
   namespace :admin do
     resources :users

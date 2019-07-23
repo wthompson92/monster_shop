@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       redirect_to profile_path
       flash[:success] = "You have been registered and logged in!"
     else
-      flash.now[:error] = @user.errors.full_messages.to_sentence
+      flash.now[:danger] = @user.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -28,19 +28,15 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  # def update_password
-  #   @user = current_user
-  #   if @user.update(password_params)
-  #     redirect_to profile_path
-  #     flash[:success] = "Your password has been updated!"
-  #   else
-  #     flash.now[:error] = @user.errors.full_messages.to_sentence
-  #     render :edit_password
-  #   end
-  # end
-
-  def edit
-    @user = current_user
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to profile_path
+      flash[:success] = "Your profile has been updated!"
+    else
+      flash.now[:danger] = @user.errors.full_messages.to_sentence
+      render :edit
+    end
   end
 
   def update
@@ -49,8 +45,8 @@ class UsersController < ApplicationController
       redirect_to profile_path
       flash[:success] = "Your profile has been updated!"
     else
-      flash.now[:error] = @user.errors.full_messages.to_sentence
-      redirect_to :edit
+      flash.now[:danger] = @user.errors.full_messages.to_sentence
+      render :edit
     end
   end
 

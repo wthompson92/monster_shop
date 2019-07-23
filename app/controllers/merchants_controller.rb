@@ -39,7 +39,7 @@ class MerchantsController < ApplicationController
     if merchant.order_items.empty?
       merchant.destroy
     else
-      flash[:notice] = "#{merchant.name} can not be deleted - they have orders!"
+      flash[:warning] = "#{merchant.name} can not be deleted - they have orders!"
     end
     redirect_to '/merchants'
   end
