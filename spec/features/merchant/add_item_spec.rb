@@ -30,7 +30,6 @@ RSpec.describe "Merchant (Merchant_admin role: 1) Can add an item" do
       expect(current_path).to eq("/merchants/#{@megan.id}/items")
       expect(page).to have_link("Bigfoot")
       expect(page).to have_content("#{@bigfoot} has been saved.")
-      save_and_open_page
     end
 
     it 'only the image can be left blank and a placeholder image is displayed if that field is left blank' do
@@ -84,7 +83,7 @@ RSpec.describe "Merchant (Merchant_admin role: 1) Can add an item" do
       fill_in('Name', with:'Bigfoot')
       fill_in('Description', with: '')
       fill_in('Image', with:'')
-      fill_in('Price', with: -300)
+      fill_in('Price', with: -300.0)
       fill_in('Inventory', with: 1)
       click_on("Create Item")
 
@@ -92,7 +91,7 @@ RSpec.describe "Merchant (Merchant_admin role: 1) Can add an item" do
       expect(find_field('Name').value).to eq 'Bigfoot'
       expect(find_field('Description').value).to eq ''
       expect(find_field('Image').value).to eq ''
-      expect(find_field('Price').value).to eq '-300'
+      expect(find_field('Price').value).to eq '-300.0'
       expect(find_field('Inventory').value).to eq '1'
     end
   end
