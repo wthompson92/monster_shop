@@ -3,8 +3,8 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
   # before_action :get_item, only: [:new, :create]
   # before_action :get_merchant, only: [:new, :create]
 
-  def update
-    item = Item.find(params[:id])
+  def activate
+    item = Item.find(params[:item_id])
 
     if item.active == false
        item.update(active: true)
@@ -38,8 +38,6 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
   end
 
 	def edit
-		# user = current_user
-		# @merchant = Merchant.find(user.merchant_id)
     @item = Item.find(params[:id])
   end
 

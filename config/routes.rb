@@ -36,14 +36,14 @@ Rails.application.routes.draw do
   get '/merchant', to: 'merchant_admins/users#dashboard', as: :merchant_dashboard
 
 
-
   namespace :merchant_admins do
     resources :users
   end
 
+	patch "/merchant_admins/items/:merchant_id/:item_id", to: "merchant_admins/items#activate", as: :activate_items
+
   namespace :merchant_admins do
-    resources :items, only: [:edit, :update, :new, :create]
-    #route for merchant items update
+    resources :items, only: [:new, :create, :edit, :update]
   end
 
   namespace :admin do
