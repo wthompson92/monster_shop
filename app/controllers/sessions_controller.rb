@@ -1,20 +1,25 @@
 class SessionsController < ApplicationController
   def new
+		if current_user
+			redirect_to_home_paths
+			flash[:notice] = "You are already logged in."
+		end
   end
 
   def create
     user = User.find_by(user_name: params[:user_name])
     if user && user.authenticate(params[:password])
      session[:user_id] = user.id
-		 	if current_user.user? && current_user.merchant_id
-				redirect_to merchant_dashboard_path
-	 		elsif current_user.user?
-      	redirect_to profile_path
-			elsif current_user.merchant_admin?
-				redirect_to merchant_dashboard_path
-			elsif current_user.admin?
-				redirect_to admin_dashboard_path
-			end
+		 redirect_to_home_paths
+		 	# if current_user.user? && current_user.merchant_id
+			# 	redirect_to merchant_dashboard_path
+	 		# elsif current_user.user?
+      # 	redirect_to profile_path
+			# elsif current_user.merchant_admin?
+			# 	redirect_to merchant_dashboard_path
+			# elsif current_user.admin?
+			# 	redirect_to admin_dashboard_path
+			# end
       flash[:success] = "Logged in a #{user.name}"
     else
       flash.now[:danger] = "User name and/or password invalid."
@@ -28,5 +33,19 @@ class SessionsController < ApplicationController
     flash[:info] = "You have been logged out"
     redirect_to root_path
   end
+
+	private
+
+	def redirect_to_home_paths
+		if current_user.user? && current_user.merchant_id
+			redirect_to merchant_dashboard_path
+		elsif current_user.user?
+			redirect_to profile_path
+		elsif current_user.merchant_admin?
+			redirect_to merchant_dashboard_path
+		elsif current_user.admin?
+			redirect_to admin_dashboard_path
+		end
+	end
 
 end
