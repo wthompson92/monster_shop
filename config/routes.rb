@@ -37,16 +37,18 @@ Rails.application.routes.draw do
 
 
 
+
   namespace :merchant_admins do
     resources :users
   end
 
   namespace :merchant_admins do
     resources :items, only: [:update, :new, :create]
-    #route for merchant items update
   end
 
   namespace :admin do
     resources :users
   end
+   get '/merchant/items', to: 'merchant_admins/items#index'
+
 end
