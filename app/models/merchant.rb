@@ -24,4 +24,18 @@ class Merchant < ApplicationRecord
                .distinct
                .pluck("CONCAT_WS(', ', users.city, users.state) AS city_state")
   end
+
+  def disable
+    update_attribute(:enabled, false)
+    items.each do |item|
+      item.active = false
+    end
+  end
+
+  def enable
+    update_attribute(:enabled, true)
+    items.each do |item|
+      item.active = true
+    end
+  end
 end
