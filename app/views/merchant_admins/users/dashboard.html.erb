@@ -1,6 +1,12 @@
+<h1>Merchant Dashboard</h1>
 
+ <p><%= @merchant.name %></p>
+ <p><%= @merchant.address %></p>
+ <p><%= @merchant.city %></p>
+ <p><%= @merchant.state %></p>
+ <p><%= @merchant.zip %></p>
 
-<h3>Pending Orders</h3>
+ <h3>Pending Orders</h3>
 <% @pending_orders.each  do |order| %>
 <div class="table-responsive">
   <table class="table table-striped">
