@@ -4,6 +4,11 @@
     <% if current_user && current_user.admin? %>
       <h2><%= link_to merchant.name, admin_merchant_dashboard_path(merchant.id) %></h2>
           <p><%= merchant.city %>, <%= merchant.state %></p>
+          <% if merchant.enabled? %>
+            <%= button_to 'Enable' %>
+          <% else %>
+            <%= button_to 'Disable' %>
+          <% end %>
     <% else %>
       <h2><%= link_to merchant.name, "/merchants/#{merchant.id}" %></h2>
     <% end %>
