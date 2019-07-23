@@ -5,6 +5,11 @@ RSpec.describe 'Admin Merchant' do
     before :each do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
       @admin123 = User.create!(user_name: "andrew@gmail.com", password: "thinking123", role: 2, name: "Andrew", address: "333 Market St", city: "Denver", state: "CO", zip: 80012 )
+      @ogre = @megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
+      @giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
+      @mermaid = @megan.items.create!(name: 'Mermaid', description: "I'm a Mermaid!", price: 500, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 13 )
+      @dragon = @megan.items.create!(name: 'Dragon', description: "I'm a Dragon", price: 2000, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
+      @fairy = @megan.items.create!(name: 'Fairy', description: "I'm a Fairy", price: 25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 66 )
 
       visit root_path
       click_link 'Login'
@@ -27,6 +32,12 @@ RSpec.describe 'Admin Merchant' do
         expect(current_path).to eq(merchants_path)
         expect(page).to have_content("#{@megan.name} is now disabled.")
       end
+
+      it "Then all of that merchant's items should be deactivated" do
+        click_button 'Disable'
+
+        expect(@ogre.active).to eq(false)
+      end
     end
 
     describe "I see a 'enable' button to any merchants who are disabled" do
@@ -36,6 +47,12 @@ RSpec.describe 'Admin Merchant' do
         click_button 'Enable'
         expect(current_path).to eq(merchants_path)
         expect(page).to have_content("#{@megan.name} is now enabled.")
+      end
+
+      it "Then all of that merchant's items should be activated" do
+        click_button 'Disable'
+        click_button 'Enable'
+        expect(@ogre.active).to eq(true)
       end
     end
   end
