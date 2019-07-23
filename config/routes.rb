@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  get '/admin/merchant/:id', to: 'admin/merchants#dashboard', as: :admin_merchant_dashboard
+  get '/admin/merchants/:id', to: 'admin/merchants#dashboard', as: :admin_merchant_dashboard
   patch '/admin/merchant/:id/disable', to: 'admin/merchants#disable', as: :admin_merchant_disable
   patch '/admin/merchant/:id/enable', to: 'admin/merchants#enable', as: :admin_merchant_enable
 
