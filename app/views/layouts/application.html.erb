@@ -38,6 +38,9 @@
     <%= link_to "All Users", admin_users_path if current_admin? %>
 
   </nav>
+  <% flash.each do |type, message| %>
+   <p><%= message %></p>
+    <% end %>
 
   <% if flash[:success] %>
   <div class="alert alert-success">
