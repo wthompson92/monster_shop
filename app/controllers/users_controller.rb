@@ -27,16 +27,9 @@ class UsersController < ApplicationController
   def edit_password
     @user = current_user
   end
-
-  def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to profile_path
-      flash[:success] = "Your profile has been updated!"
-    else
-      flash.now[:danger] = @user.errors.full_messages.to_sentence
-      render :edit
-    end
+  
+  def edit
+    @user = current_user
   end
 
   def update
