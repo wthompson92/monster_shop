@@ -34,9 +34,9 @@ class OrdersController < ApplicationController
 	def update
 		@order = Order.find(params[:id])
 		@order.cancel_order
+		@order.save
 		flash[:notice] = "That order has been cancelled."
 		redirect_to profile_path
-		# binding.pry
 	end
 
   private

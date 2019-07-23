@@ -22,12 +22,11 @@ class Order < ApplicationRecord
 
   def cancel_order
     update_attributes(status: :cancelled)
-      order_items.each do |oi|
-        oi.fulfilled = false
-        # p oi.item.inventory
-        oi.item.inventory += oi.quantity
-        # p oi.item.inventory
-      end
+    order_items.each do |oi|
+      oi.fulfilled = false
+      oi.item.inventory += oi.quantity
+      oi.quantity = 0
+    end
   end
 
 end
