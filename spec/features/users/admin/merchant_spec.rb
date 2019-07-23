@@ -28,10 +28,15 @@ RSpec.describe 'Admin Merchant' do
         expect(page).to have_content("#{@megan.name} is now disabled.")
       end
     end
+
+    describe "I see a 'enable' button to any merchants who are disabled" do
+      it "When I click that button, I am returned to admin's merchant index where the account is enabled and see a flash message" do
+        click_button 'Disable'
+        expect(page).to have_button('Enable')
+        click_button 'Enable'
+        expect(current_path).to eq(merchants_path)
+        expect(page).to have_content("#{@megan.name} is now enabled.")
+      end
+    end
   end
 end
-
-# I see a "disable" button next to any merchants who are not yet disabled
-# When I click on the "disable" button
-# I am returned to the admin's merchant index page where I see that the merchant's account is now disabled
-# And I see a flash message that the merchant's account is now disabled
