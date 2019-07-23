@@ -1,6 +1,21 @@
+<h2>Customer Information</h2>
+  <h3>Customer Name: <%= @customer.name %></h3>
+  <h4>Customer Address: <%= @customer.address %></h4>
 
-<h1>Hello</h1>
-<%= @order.id %>
-<% @order.items.each do |item| %>
-<%= item.id %>
-<% end  %>
+  <% @items.each do |order_item| %>
+  <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src=<%="#{order_item.item.image}"%>>
+  <div class="card-body">
+    <h5 class="card-title"><%= order_item.item.name %></h5>
+    <ul>
+    <li class="card-text">Price: <%="#{order_item.item.price}"%></li>
+    <li class="card-text">Desired Quantity: <%="#{order_item.quantity}"%></li>
+    <% if order_item.quantity <= order_item.item.inventory %>
+    <%= button_to "Fulfill Order", merchant_admins_order_path(order_item.order_id), method: :patch, class: "btn btn-primary" %>
+    <% else %>
+    <%= "You do not have a high enough inventory to fulfill the order" %>
+    <% end %>
+  </ul>
+  </div>
+</div>
+<% end %>
