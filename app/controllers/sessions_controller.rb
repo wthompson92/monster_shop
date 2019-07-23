@@ -10,9 +10,10 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(user_name: params[:user_name])
     if user && user.authenticate(params[:password])
-     	session[:user_id] = user.id
-		 	redirect_to_home_paths
-    	flash[:success] = "Logged in a #{user.name}"
+     session[:user_id] = user.id
+		 redirect_to_home_paths
+      flash[:success] = "Logged in a #{user.name}"
+
     else
       flash.now[:danger] = "User name and/or password invalid."
       render :new
