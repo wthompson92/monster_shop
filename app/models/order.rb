@@ -16,12 +16,19 @@ class Order < ApplicationRecord
     order_items.sum(:quantity)
   end
 
-  def sorted
-    self.order(:status)
+  def package_order
+    self.update_attributes(status: 1)
+  end
+
+  def ship_order
+    self.update_attributes(status: 2)
   end
 
   def cancel_order
-    update_attributes(status: :cancelled)
-    # binding.pry
+    update_attributes(status: 3)
+  end
+
+  def customer
+    self.user
   end
 end
