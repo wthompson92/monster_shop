@@ -50,7 +50,9 @@ Rails.application.routes.draw do
     resources :users
     # resources :orders, only: [:update]
   end
-   get '/merchant/items', to: 'merchant_admins/items#index'
+
+
+	get '/merchant/items', to: 'merchant_admins/items#index'
 
   get '/admin/merchants/:id', to: 'admin/merchants#dashboard', as: :admin_merchant_dashboard
   patch '/admin/merchant/:id/disable', to: 'admin/merchants#disable', as: :admin_merchant_disable
