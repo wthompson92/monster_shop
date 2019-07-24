@@ -40,14 +40,14 @@ Rails.application.routes.draw do
   namespace :merchant_admins do
     resources :users
   end
+  # patch "/merchant_admins/order_items/:id", to: "merchant_admins/order_items#update", as: :fulfill
 
 	patch "/merchant_admins/items/:merchant_id/:item_id", to: "merchant_admins/items#activate", as: :activate_items
 
   namespace :merchant_admins do
     resources :items, only: [:new, :create, :edit, :update]
-  end
-  namespace :merchant_admins do
-    resources :orders, only: [:show]
+    resources :orders, only: [:show, :update]
+    # resources :order_items, only: [:update]
   end
 
   namespace :admin do

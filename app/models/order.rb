@@ -26,7 +26,25 @@ class Order < ApplicationRecord
 
   def cancel_order
     update_attributes(status: 3)
+
+end
+   def fulfill_order
+     order_items.each do |oi|
+     oi.update(fulfilled: true)
+      oi.item.inventory - oi.quantity
+      oi.save
+    end
   end
+ #
+ # #    def subtract_inventory
+ # #      order_items.each do |oi|
+ # #      oi.inventory - oi.quantity
+ # #    end
+ # # end
+ #      # order_items.update_attributes(:fulfilled, true)
+ #    end
+
+
 
   def customer
     self.user
