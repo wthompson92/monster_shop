@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_current_user, only: [:show]
-	before_action :deny_admin, only: [:show]
+	before_action :deny_admin, only: [:show, :edit, :update]
 	before_action :get_current_user, only: [:show, :edit, :update,]
 
   def show
