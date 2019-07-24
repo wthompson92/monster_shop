@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates_presence_of :name, :address, :city, :state, :zip
   has_many :orders
   belongs_to :merchant, optional: true
+	
   enum role: ["user", "merchant_admin", "admin"]
 
   def logged_in

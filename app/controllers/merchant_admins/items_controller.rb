@@ -1,7 +1,11 @@
 class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
-
-  # before_action :get_item, only: [:new, :create]
-  # before_action :get_merchant, only: [:new, :create]
+  
+  def index
+    user = current_user
+    @merchant =	 Merchant.find(user.merchant_id)
+    @items = @merchant.items
+    render "/items/index"
+  end
 
   def activate
     item = Item.find(params[:item_id])
@@ -54,6 +58,25 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
       render :edit
     end
 	end
+
+	def destroy
+		item = Item.find(params[:id])
+		if current_merchant_admin?
+			if item.orders.empty?
+				item.destroy
+				flash[:success] = "#{item.name} has been deleted."
+			end
+				redirect_to "/merchants/#{params[:merchant_id]}/items"
+		else
+			if
+				item.orders.empty?
+				item.destroy
+			else
+				flash[:danger] = "#{item.name} can not be deleted - it has been ordered!"
+			end
+			redirect_to '/items'
+		end
+	end	
 
   private
 

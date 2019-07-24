@@ -12,7 +12,7 @@ RSpec.describe "Login Specifics" do
 			click_button "Log In"
 
 			expect(current_path).to eq profile_path
-			expect(page).to have_content("Logged in a #{user.name}")
+			expect(page).to have_content("Logged in as #{user.name}")
 		end
 	end
 
@@ -28,7 +28,7 @@ RSpec.describe "Login Specifics" do
 			click_button "Log In"
 
 			expect(current_path).to eq merchant_dashboard_path
-			expect(page).to have_content("Logged in a #{merchant_employee.name}")
+			expect(page).to have_content("Logged in as #{merchant_employee.name}")
     end
 	end
 
@@ -44,7 +44,7 @@ RSpec.describe "Login Specifics" do
 			click_button "Log In"
 
 			expect(current_path).to eq merchant_dashboard_path
-			expect(page).to have_content("Logged in a #{merchant_admin.name}")
+			expect(page).to have_content("Logged in as #{merchant_admin.name}")
     end
 	end
 
@@ -59,7 +59,7 @@ RSpec.describe "Login Specifics" do
 			click_button "Log In"
 
 			expect(current_path).to eq admin_dashboard_path
-			expect(page).to have_content("Logged in a #{admin.name}")
+			expect(page).to have_content("Logged in as #{admin.name}")
 		end
 	end
 end
