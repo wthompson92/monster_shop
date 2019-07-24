@@ -2,12 +2,9 @@ class Admin::MerchantsController < Admin::BaseController
 
 	def dashboard
 		@merchant = Merchant.find(params[:id])
+		@pending_orders = @merchant.pending_orders
 		render "/merchant_admins/users/dashboard"
 	end
-
-	def show
-    @merchant = Merchant.find(params[:id])
-  end
 
 	def disable
 		merchant = Merchant.find(params[:id])
