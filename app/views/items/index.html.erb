@@ -47,9 +47,9 @@
 <hr>
   <section class= 'most_popular'>
   <h4>Most Popular Items: </h4>
-  <% @items.favorite_items.each do | name, quantity | %>
+  <% @items.favorite_items.each do |item| %>
     <ul>
-      <li><%="#{name}: #{quantity}" %></li>
+      <li><%="#{item.name}: #{item.total}" %></li>
     </ul>
   </section>
   <% end %>
@@ -57,9 +57,9 @@
 <hr>
   <section class= 'least_popular'>
   <h4>Least Popular Items: </h4>
-  <% @items.least_favorite_items.each do |name, quantity| %>
+  <% @items.least_favorite_items.each do |item| %>
     <ul>
-      <li><%="#{name}: #{quantity}" %></li>
+      <li><%="#{item.name}: #{item.total}" %></li>
     </ul>
   </section>
 <% end %>

@@ -1,8 +1,5 @@
 class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
-
-  # before_action :get_item, only: [:new, :create]
-  # before_action :get_merchant, only: [:new, :create]
-
+  
   def index
     user = current_user
     @merchant =	 Merchant.find(user.merchant_id)
