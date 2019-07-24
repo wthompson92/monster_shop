@@ -51,7 +51,7 @@ RSpec.describe "Merchant admin order show page" do
 
     it "When I click on that link or button I am returned to the order show page, I see the item is now fulfilled. I also see a flash message indicating that I have fulfilled that item. the item's inventory quantity is permanently reduced by the user's desired quantity"  do
       click_button "Fulfill Order"
-
+      save_and_open_page
       expect(page).to have_content("You have fuilfilled the order")
 
       expect(page).to have_content("You have already fulfilled this order")
