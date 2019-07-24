@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
 
 	def update
 		@order.cancel_order
-		flash[:notice] = "That order has been cancelled."
+		flash[:success] = "That order has been cancelled."
 		redirect_to profile_path
 	end
 

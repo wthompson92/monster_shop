@@ -33,7 +33,7 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
 			redirect_to merchant_items_path(@merchant)
       flash[:success] = "#{@item.name} has been saved."
     else
-      generate_flash(@item)
+      flash[:danger] = @item.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -46,7 +46,7 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
       redirect_to merchant_items_path(@merchant)
 			flash[:success] = "#{@item.name} has been updated"
     else
-      generate_flash(@item)
+      flash[:danger] = @item.errors.full_messages.to_sentence
       render :edit
     end
 	end

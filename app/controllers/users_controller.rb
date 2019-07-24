@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
   before_action :require_current_user, only: [:show]
 	before_action :deny_admin, only: [:show]
+	before_action :get_current_user, only: [:show, :edit, :update,]
 
-  # ADD IF STATEMENT SO YOU KNOW WHICH ONE OF THESE TO USE
   def show
-    @user = current_user
-    # @user = User.find(params[:id])
   end
 
   def new
@@ -27,13 +25,11 @@ class UsersController < ApplicationController
   def edit_password
     @user = current_user
   end
-  
+
   def edit
-    @user = current_user
   end
 
   def update
-    @user = current_user
     if @user.update(user_params)
       redirect_to profile_path
       flash[:success] = "Your profile has been updated!"
@@ -52,4 +48,8 @@ class UsersController < ApplicationController
   def password_params
     params.require(:user).permit(:password, :password_confirmation)
   end
+
+	def get_current_user
+		@user = current_user
+	end
 end
