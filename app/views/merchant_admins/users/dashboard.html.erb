@@ -1,30 +1,32 @@
 <h1>Merchant Dashboard</h1>
-
- <p><%= @merchant.name %></p>
- <p><%= @merchant.address %></p>
- <p><%= @merchant.city %></p>
- <p><%= @merchant.state %></p>
- <p><%= @merchant.zip %></p>
+<h3><%= @merchant.name %></h3>
+<dl>
+ <dd>Address:<%= @merchant.address %></dd>
+ <dd>City: <%= @merchant.city %></dd>
+ <dd>State:<%= @merchant.state %></dd>
+ <dd>Zip:<%= @merchant.zip %></dd>
+</dl>
 
  <h3>Pending Orders</h3>
+
 <% @pending_orders.each  do |order| %>
-<div class="table-responsive">
-  <table class="table table-striped">
-              <thead class="thead-dark">
-           <tr>
-               <th> Order Id</th>
-               <th> Order Date</th>
-               <th> Quantity of my items</th>
-               <th> Value of My items </th>
-           </tr>
-         </thead>
-           <tr>
-             <tr>
-               <td> <%= link_to "#{order.order_id}", merchant_admins_order_path(order.order_id)%></td>
-               <td><%="#{order.created_at.to_formatted_s(:short)}"%></td>
-               <td><%="#{order.quantity}"%></td>
-               <td><%="#{order.subtotal}"%></td>
-             </tr>
-       </table>
+<table class = "table">
+  <thead>
+    <tr>
+      <th scope="col">Order Id</th>
+      <th scope="col">Order Date</th>
+      <th scope="col">Quantity of my items</th>
+      <th scope="col">Value of My items</th>
+    </tr>
+  </thead>
+  <tbody class = 'table-hover'>
+    <tr>
+      <td> <%= link_to "#{order.order_id}", merchant_admins_order_path(order.order_id)%></td>
+      <td><%="#{order.created_at.to_formatted_s(:short)}"%></td>
+      <td><%="#{order.quantity}"%></td>
+      <td><%="#{order.subtotal}"%></td>
+    </tr>
+  </tbody>
+</table>
        </div
        <% end %>
