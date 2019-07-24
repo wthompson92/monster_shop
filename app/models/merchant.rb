@@ -42,13 +42,14 @@ def enable
 end
 
 	def merchant_orders
-		Order.joins(order_items: :item).where(status: "pending")
-		# order = Order.joins(:items).where('item.merchant_id = merchant_id')
-		# order.where('order.status = pending')
-		# items.joins(:orders).distinct.pluck(:order_id)
-		# items.joins(:orders).where('order.status = pending')
-		# binding.pry
-		# select('item.merchant_id = merchant_id')
-	end
+    items.joins(:orders)
+  end
 
+  def pending_orders
+    order_items.joins(:order).where("orders.status = 0")
+  end
+
+  def items_in_order
+      items.joins(:orders)
+  end
 end

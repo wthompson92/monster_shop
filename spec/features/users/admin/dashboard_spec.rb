@@ -20,6 +20,9 @@ RSpec.describe "Admin Index" do
       click_link "Admin Dashboard"
       expect(current_path).to eq(admin_dashboard_path)
       end
+
+      it  "I see a ship button next to all packeged orders. When I press the ship button, the status is changed to shipped and the user cannont cancel the order." do
+      end
     end
   end
 end

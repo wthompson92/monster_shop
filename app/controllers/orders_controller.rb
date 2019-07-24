@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
 		@order.cancel_order
 		flash[:notice] = "That order has been cancelled."
 		redirect_to profile_path
+		@ship = @order.ship_order
 	end
 
   private
