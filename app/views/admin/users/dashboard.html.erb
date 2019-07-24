@@ -11,12 +11,12 @@
   <dd>User name: <%= link_to "#{user.user_name}", admin_user_path(user)%></dd>
   <dd>Order Id: <%= order.id %></dd>
   <dd>Order Date: <%= order.created_at.to_formatted_s(:short)%></dd>
+    <% if order.status == "pending" %>
+    <li>Order status: <%= order.status%><%= button_to 'Ship Order', ship_order_path(order), method: :patch  %></li>
+      <%else %>
+    <li>Order status: <%=order.status%></li>
+    <% end %>
+  <% end %>
 
-  <% if order.status == "pending" %>
-  <li>Order status: <%= order.status%><%= button_to 'Ship Order', ship_order_path(order), method: :patch  %></li>
-    <%else %>
-  <li>Order status: <%=order.status%></li>
-  <% end  %>
-  <% end  %>
 </dl>
-<% end  %>
+<% end %>
