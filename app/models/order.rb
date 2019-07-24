@@ -25,6 +25,13 @@ class Order < ApplicationRecord
   end
 
   def cancel_order
+    update_attributes(status: :cancelled)
+    order_items.each do |oi|
+      oi.fulfilled = false
+      oi.item.inventory += oi.quantity
+      oi.quantity = 0
+      oi.save
+    end
     update_attributes(status: 3)
   end
 
