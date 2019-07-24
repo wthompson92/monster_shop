@@ -1,8 +1,7 @@
 class MerchantAdmins::UsersController < MerchantAdmins::BaseController
 
 	def dashboard
-		user = current_user
-		@merchant = Merchant.find(user.merchant_id)
+		@merchant = Merchant.find(current_user.merchant_id)
 		@pending_orders = @merchant.pending_orders
 	end
 end

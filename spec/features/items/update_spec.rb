@@ -56,9 +56,9 @@ RSpec.describe 'Update Item Page' do
 			fill_in 'Inventory', with: "abc"
       click_button 'Update Item'
 
-      expect(page).to have_content("description: [\"can't be blank\"]")
-      expect(page).to have_content("price: [\"is not a number\"]")
-      expect(page).to have_content("inventory: [\"is not a number\"]")
+      expect(page).to have_content("Description can't be blank")
+      expect(page).to have_content("Price is not a number")
+      expect(page).to have_content("Inventory is not a number")
       expect(page).to have_button('Update Item')
     end
   end

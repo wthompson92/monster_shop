@@ -28,18 +28,18 @@ class Merchant < ApplicationRecord
   end
 
   def disable
-  update_attribute(:enabled, false)
-  items.each do |item|
-    item.update(active: false)
-  end
-end
+  	update_attribute(:enabled, false)
+  	items.each do |item|
+    	item.update(active: false)
+  	end
+	end
 
-def enable
-  update_attribute(:enabled, true)
-  items.each do |item|
-    item.update(active: true)
-  end
-end
+	def enable
+	  update_attribute(:enabled, true)
+	  items.each do |item|
+    	item.update(active: true)
+	  end
+	end
 
 	def merchant_orders
     items.joins(:orders)

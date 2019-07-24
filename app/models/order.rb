@@ -32,7 +32,6 @@ class Order < ApplicationRecord
       oi.quantity = 0
       oi.save
     end
-    #update_attributes(status: 3)
   end
 
    def fulfill_order

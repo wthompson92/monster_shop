@@ -8,12 +8,6 @@ class MerchantAdmins::BaseController < ApplicationController
       end
     end
 
-		def require_merchant_employee
-			unless current_merchant_employee?
-				render file: "/public/404", status: 404
-			end
-		end
-
 		def require_merchant_access
 			unless current_merchant_employee? || current_merchant_admin?
 				render file: "/public/404", status: 404
