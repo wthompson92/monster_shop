@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Admin Index" do
+RSpec.describe "Admin Dashboard" do
     before :each do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
 
@@ -41,26 +41,13 @@ RSpec.describe "Admin Index" do
         expect(page).to have_link(@nathan.user_name)
         expect(page).to have_content(@order_1.id)
         expect(page).to have_content(@order_1.created_at.to_formatted_s(:short))
-        
+
       end
-      ## it  "I see a ship button next to all packeged orders. When I press the ship button, the status is changed to shipped and the user cannont cancel the order." do
-      # end
+     it  "I see a ship button next to all packeged orders. When I press the ship button, the status is changed to shipped and the user cannont cancel the order." do
 
-#       As an admin user
-# When I log into my dashboard, "/admin/dashboard"
-# Then I see all orders in the system.
-# For each order I see the following information:
-#
-# - user who placed the order, which links to admin view of user profile
-# - order id
-# - date the order was created
-#
-# Orders are sorted by "status" in this order:
-#
-# - packaged
-# - pending
-# - shipped
-# - cancelled
-
-    end
-  end
+       expect(page).to have_button("Ship Order")
+       click_button "Ship Order"
+       expect(page).to have_content("shipped")
+     end
+   end
+ end
