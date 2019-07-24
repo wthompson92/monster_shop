@@ -8,7 +8,7 @@
 
 <h3>Fulfill Order Items</h3>
   <% @items.each do |order_item| %>
-  <section id="item-<%= order_item.id%>">
+  <section id="item-<%= order_item.item.id %>">
 
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" src=<%="#{order_item.item.image}"%>>
@@ -27,5 +27,5 @@
           </dl>
         </div>
       </div>
-    </section>
+		</section>
     <% end %>

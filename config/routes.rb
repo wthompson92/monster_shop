@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   end
   namespace :merchant_admins do
     resources :items, only: [:update, :new, :create]
-    resources :orders, only: [:show]
+    resources :orders, only: [:show, :update]
   end
   patch '/admin/orders/:id', to: 'admin/orders#update', as: :ship_order
 
