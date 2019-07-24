@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create, :update]
   end
 
-  resources :items, only: [:index, :show, :edit, :update, :destroy] do
+  resources :items, only: [:index, :show] do
     resources :reviews, only: [:new, :create]
   end
 
@@ -19,8 +19,6 @@ Rails.application.routes.draw do
   delete '/cart', to: 'cart#empty'
   patch '/cart/:change/:item_id', to: 'cart#update_quantity'
   delete '/cart/:item_id', to: 'cart#remove_item'
-
-  # resources :orders, only: [:new, :create, :show]
 
   resources :users, only: [:new, :create, :show, :edit, :update] do
   	resources :orders, only: [:create, :show]
@@ -36,14 +34,11 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin/users#dashboard', as: :admin_dashboard
   get '/merchant', to: 'merchant_admins/users#dashboard', as: :merchant_dashboard
 
-  namespace :merchant_admins do
-    resources :users
-  end
-
 	patch "/merchant_admins/items/:merchant_id/:item_id", to: "merchant_admins/items#activate", as: :activate_items
 
   namespace :merchant_admins do
-    resources :items, only: [:new, :create, :edit, :update]
+    resources :items, only: [:new, :create, :edit, :update, :destroy]
+		resources :users
   end
   namespace :merchant_admins do
     resources :items, only: [:update, :new, :create]
