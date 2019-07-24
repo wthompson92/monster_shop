@@ -37,9 +37,9 @@ RSpec.describe "Merchant Dashboard" do
 		 	visit merchant_dashboard_path
 
 		 		expect(page).to have_link(@order_1.id)
-		 		expect(page).to have_content(@order_1.created_at)
-		 		expect(page).to have_content(@megan.merchant_quantity)
-		 		expect(page).to have_content(@megan.merchant_value)
+		 		expect(page).to have_content(@order_1.created_at.to_formatted_s(:short))
+		 		expect(page).to have_content(@order_item_1.quantity)
+		 		expect(page).to have_content(@order_item_1.subtotal)
 		 	end
 	  end
 	end
