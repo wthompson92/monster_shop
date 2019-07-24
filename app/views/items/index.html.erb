@@ -1,7 +1,9 @@
-<% if current_merchant_admin? %>
+<% if @merchant %>
 
   <h1>All Items From <%= link_to @merchant.name, "/merchant/#{@merchant.id}" %></h1>
-  <%= link_to 'Add New Item', new_merchant_admins_item_path %>
+	<% if current_merchant_admin? %>
+  	<%= link_to 'Add New Item', new_merchant_admins_item_path %>
+	<% end %>
 <% else %>
 <hr>
   <h1>All Items</h1>

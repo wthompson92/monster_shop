@@ -1,8 +1,8 @@
 class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
-  
+
   def index
     user = current_user
-    @merchant =	 Merchant.find(user.merchant_id)
+    @merchant =	Merchant.find(user.merchant_id)
     @items = @merchant.items
     render "/items/index"
   end
@@ -76,7 +76,7 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
 			end
 			redirect_to '/items'
 		end
-	end	
+	end
 
   private
 
