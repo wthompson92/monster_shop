@@ -35,17 +35,7 @@ end
       oi.save
     end
   end
- #
- # #    def subtract_inventory
- # #      order_items.each do |oi|
- # #      oi.inventory - oi.quantity
- # #    end
- # # end
- #      # order_items.update_attributes(:fulfilled, true)
- #    end
-
-
-
+ 
   def customer
     self.user
   end

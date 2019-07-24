@@ -33,8 +33,8 @@ class OrdersController < ApplicationController
 
 	def update
 		@order = Order.find(params[:id])
-		@order.cancel_order
-		@ship = @order.ship_order
+		@cancel = @order.cancel_order
+		# @ship = @order.ship_order
 	end
 
   private
