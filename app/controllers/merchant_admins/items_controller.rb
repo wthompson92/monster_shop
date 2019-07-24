@@ -1,8 +1,8 @@
 class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
+	before_action :get_current_merchant, only: [:index, :new, :create, :update]
+	before_action :get_item, only: [:edit, :update]
 
   def index
-    user = current_user
-    @merchant =	Merchant.find(user.merchant_id)
     @items = @merchant.items
     render "/items/index"
   end
@@ -23,18 +23,15 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
   end
 
   def new
-     user = current_user
-     @merchant = Merchant.find(user.merchant_id)
 		 @item = Item.new
   end
 
   def create
-    user = current_user
-    @merchant = Merchant.find(user.merchant_id)
     @item = @merchant.items.new(item_params)
     @item.image = params[:image] || 'https://encrypted-tbn0.gstatic.comimages?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw'
     if @item.save
-      redirect_to "/merchants/#{@merchant.id}/items"
+			redirect_to merchant_items_path(@merchant)
+      # redirect_to "/merchants/#{@merchant.id}/items"
       flash[:success] = "#{@item.name} has been saved."
     else
       generate_flash(@item)
@@ -43,15 +40,12 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
   end
 
 	def edit
-    @item = Item.find(params[:id])
   end
 
 	def update
-		user = current_user
-    @merchant = Merchant.find(user.merchant_id)
-		@item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to "/merchants/#{@merchant.id}/items"
+      redirect_to merchant_items_path(@merchant)
+      # redirect_to "/merchants/#{@merchant.id}/items"
 			flash[:success] = "#{@item.name} has been updated"
     else
       generate_flash(@item)
@@ -83,4 +77,12 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
   def item_params
     params.permit(:name, :description, :price, :image, :inventory)
   end
+
+	def get_current_merchant
+		@merchant = Merchant.find(current_user.merchant_id)
+	end
+
+	def get_item
+		@item = Item.find(params[:id])
+	end
 end
