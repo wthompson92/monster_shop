@@ -110,14 +110,12 @@ RSpec.describe 'Item Index Page' do
       expect(page).to have_content("Giant: 2")
       expect(page).to have_content("Ogre: 2")
 
-
       expect(page).to have_content("Least Popular Items:")
       expect(page).to have_content("Yeti: 1")
       expect(page).to have_content("Warewolf: 1")
       expect(page).to have_content("Hippo: 1")
       expect(page).to have_content("Mermaid: 1")
       expect(page).to have_content("Ogre: 2")
-
     end
   end
 end
