@@ -9,6 +9,8 @@ class Merchant < ApplicationRecord
                         :state,
                         :zip
 
+  validates :enabled, inclusion: { in: [true, false] }
+
   def item_count
     items.count
   end
@@ -25,7 +27,29 @@ class Merchant < ApplicationRecord
                .pluck("CONCAT_WS(', ', users.city, users.state) AS city_state")
   end
 
+  def disable
+  update_attribute(:enabled, false)
+  items.each do |item|
+    item.update(active: false)
+  end
+end
+
+def enable
+  update_attribute(:enabled, true)
+  items.each do |item|
+    item.update(active: true)
+  end
+end
+
 	def merchant_orders
     items.joins(:orders)
+  end
+
+  def pending_orders
+    order_items.joins(:order).where("orders.status = 0")
+  end
+
+  def items_in_order
+      items.joins(:orders)
   end
 end

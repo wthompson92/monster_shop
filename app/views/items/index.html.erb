@@ -19,10 +19,12 @@
       <p><%= item.active ? "Active" : "Inactive" %></p>
 
         <% if item.active == false %>
-          <p><%= link_to "Activate Item", merchant_admins_item_path(item.id, {merchant_id: item.merchant_id}), method: :patch %></p>
+          <p><%= link_to "Activate Item", activate_items_path(item.id, {merchant_id: item.merchant_id}), method: :patch %></p>
           <% else %>
-            <p><%= link_to "Deactivate Item", merchant_admins_item_path(item.id, {merchant_id: item.merchant_id}), method: :patch %></p>
+            <p><%= link_to "Deactivate Item", activate_items_path(item.id, {merchant_id: item.merchant_id}), method: :patch %></p>
         <% end  %>
+
+				<%= button_to "Update Item", edit_merchant_admins_item_path(item.id), method: :get %>
 
     <% unless item.purchased.include? item.id %>
       <p><%= link_to "Delete Item", item_path(item.id, {merchant_id: item.merchant_id}), method: :delete %></p>

@@ -31,6 +31,8 @@ RSpec.describe "Order Show Page", type: :feature do
 
         expect(page).to have_content("Order ID: #{@order_1.id}")
         expect(page).to have_content("Order Created: #{@order_1.created_at}")
+        expect(page).to have_content("#{@ogre.name}")
+        expect(page).to have_content("Description: #{@ogre.description}")
         expect(page).to have_content("Last Updated: #{@order_1.updated_at}")
         expect(page).to have_content("Order Status: #{@order_1.status}")
         expect(page).to have_content("Total Quantity of Items: #{@order_1.total_quantity}")
@@ -40,17 +42,11 @@ RSpec.describe "Order Show Page", type: :feature do
       it "I see a link to cancel the order only if the order is still pending" do
         expect(page).to have_button('Cancel Order')
         click_button 'Cancel Order'
-        expect(current_path).to eq(cancel_order_path(@order_1.id))
+        expect(current_path).to eq(profile_path)
+        expect(page).to have_content("That order has been cancelled.")
+        click_link 'My Orders'
+        expect(page).to have_content("Order Status: cancelled")
       end
-
-# I see a button or link to cancel the order only if the order is still pending
-# When I click the cancel button for an order, the following happens:
-# - Each row in the "order items" table is given a status of "unfulfilled"
-# - The order itself is given a status of "cancelled"
-# - Any item quantities in the order that were previously fulfilled have their quantities returned to their respective merchant's inventory for that item.
-# - I am returned to my profile page
-# - I see a flash message telling me the order is now cancelled
-# - And I see that this order now has an updated status of "cancelled"
     end
   end
 end

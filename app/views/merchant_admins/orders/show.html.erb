@@ -1,21 +1,24 @@
-<h2>Customer Information</h2>
-  <h3>Customer Name: <%= @customer.name %></h3>
-  <h4>Customer Address: <%= @customer.address %></h4>
+<h1>Merchant Order Page</h1>
 
+<dl>
+  <dt><h3>Customer Information</h3></dt>
+    <dd>Customer Name: <%= @customer.name %></dd>
+    <dd>Customer Address: <%= @customer.address %></dd>
+</dl>
   <% @items.each do |order_item| %>
-  <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src=<%="#{order_item.item.image}"%>>
-  <div class="card-body">
-    <h5 class="card-title"><%= order_item.item.name %></h5>
-    <ul>
-    <li class="card-text">Price: <%="#{order_item.item.price}"%></li>
-    <li class="card-text">Desired Quantity: <%="#{order_item.quantity}"%></li>
-    <% if order_item.quantity <= order_item.item.inventory %>
-    <%= button_to "Fulfill Order", merchant_admins_order_path(order_item.order_id), method: :patch, class: "btn btn-primary" %>
-    <% else %>
-    <%= "You do not have a high enough inventory to fulfill the order" %>
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src=<%="#{order_item.item.image}"%>>
+        <div class="card-body">
+          <dl>
+            <dt><h5 class="card-title"><%=link_to order_item.item.name, item_path(order_item.item.id) %></h5></dt>
+            <dd class="card-text">Price: <%="#{number_to_currency(order_item.item.price)}"%></dd>
+            <dd class="card-text">Desired Quantity:  <%="#{order_item.quantity}"%></dd>
+            <% if order_item.quantity <= order_item.item.inventory %>
+              <%= button_to "Fulfill Order", merchant_admins_order_path(order_item.order_id), method: :patch, class: "btn btn-primary" %>
+            <% else %>
+            <p>"You do not have a high enough inventory to fulfill the order" %><p>
+            <% end %>
+          </dl>
+        </div>
+      </div>
     <% end %>
-  </ul>
-  </div>
-</div>
-<% end %>
