@@ -1,7 +1,7 @@
 <% if current_merchant_admin? %>
+
   <h1>All Items From <%= link_to @merchant.name, "/merchant/#{@merchant.id}" %></h1>
   <%= link_to 'Add New Item', new_merchant_admins_item_path %>
-
 <% else %>
 <hr>
   <h1>All Items</h1>
@@ -49,9 +49,9 @@
 <hr>
   <section class= 'most_popular'>
   <h4>Most Popular Items: </h4>
-  <% @items.favorite_items.each do | name, quantity | %>
+  <% @items.favorite_items.each do |item| %>
     <ul>
-      <li><%="#{name}: #{quantity}" %></li>
+      <li><%="#{item.name}: #{item.total}" %></li>
     </ul>
   </section>
   <% end %>
@@ -59,9 +59,9 @@
 <hr>
   <section class= 'least_popular'>
   <h4>Least Popular Items: </h4>
-  <% @items.least_favorite_items.each do |name, quantity| %>
+  <% @items.least_favorite_items.each do |item| %>
     <ul>
-      <li><%="#{name}: #{quantity}" %></li>
+      <li><%="#{item.name}: #{item.total}" %></li>
     </ul>
   </section>
 <% end %>

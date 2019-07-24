@@ -46,7 +46,7 @@ RSpec.describe Item do
       @ogre = @megan.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
       @giant = @megan.items.create!(name: 'Giant', description: "I'm a Giant!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
       @mermaid = @megan.items.create!(name: 'Mermaid', description: "I'm a Mermaid!", price: 500, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 13 )
-      @dragon = @megan.items.create!(name: 'Dragon', description: "I'm a Dragon", price: 2000, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
+      @dragon = @megan.items.create!(name: 'Dragon', description: "I'm a Dragon", price: 2000, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 4 )
       @fairy = @megan.items.create!(name: 'Fairy', description: "I'm a Fairy", price: 25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 66 )
       @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
       @warewolf = @brian.items.create!(name: 'Warewolf', description: "I'm a Warewolf", price: 600, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 13 )
@@ -63,29 +63,25 @@ RSpec.describe Item do
 
       @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)
       @order_1.order_items.create!(item: @giant, price: @giant.price, quantity: 2)
-      @order_1.order_items.create!(item: @dragon, price: @dragon.price, quantity: 2)
+      @order_1.order_items.create!(item: @dragon, price: @dragon.price, quantity: 4)
       @order_1.order_items.create!(item: @ghoul, price: @ghoul.price, quantity: 2)
-      @order_1.order_items.create!(item: @fairy, price: @fairy.price, quantity: 2)
+      @order_1.order_items.create!(item: @fairy, price: @fairy.price, quantity: 3)
 
       @order_2.order_items.create!(item: @yeti, price: @yeti.price, quantity: 1)
       @order_2.order_items.create!(item: @warewolf, price: @warewolf.price, quantity: 1)
       @order_2.order_items.create!(item: @mermaid, price: @mermaid.price, quantity: 1)
       @order_2.order_items.create!(item: @hippo, price: @hippo.price, quantity: 1)
+      @order_2.order_items.create!(item: @troll, price: @troll.price, quantity: 1)
     end
 
-    it 'returns a hash of top five favorite items and how many times purchased' do
+    it 'returns the top five objects' do
 
-      expect(Item.favorite_items).to eq({"Dragon"=>2, "Fairy"=>2, "Ghoul" => 2, "Giant"=>2, "Ogre"=>2})
+      expect(Item.favorite_items).to eq([@dragon, @fairy, @ghoul, @giant, @ogre])
     end
 
-    it 'returns a hash of bottom five items and how many times purchased' do
+    it 'returns the 5 least favorite objects' do
 
-      expect(Item.least_favorite_items).to eq({"Yeti"=>1, "Warewolf"=>1, "Hippo"=>1, "Mermaid"=>1, "Ogre"=>2})
-    end
-
-    it "returns an array of item id's that have been purchased " do
-
-      expect(@troll.purchased.sort).to eq([@ogre.id, @giant.id, @dragon.id, @ghoul.id, @fairy.id, @yeti.id, @warewolf.id, @mermaid.id, @hippo.id].sort)
+      expect(Item.least_favorite_items).to eq([@hippo, @mermaid, @troll, @warewolf, @yeti])
     end
   end
 end

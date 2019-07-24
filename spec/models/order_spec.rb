@@ -21,9 +21,9 @@ RSpec.describe Order do
       @user_1 = User.create!(name: "Santi", user_name: "user_1_email@emailplace.com", password: "test", role: 0, address: "123 Donut St", city: "Denver", state: "CO", zip: 22222)
       @order_1 = @user_1.orders.create!
       @order_2 = @user_1.orders.create!
-      @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)
-      @order_1.order_items.create!(item: @hippo, price: @hippo.price, quantity: 3)
-      @order_2.order_items.create!(item: @hippo, price: @hippo.price, quantity: 2)
+      @oi_1 = @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)
+      @oi_2 = @order_1.order_items.create!(item: @hippo, price: @hippo.price, quantity: 3)
+      @oi_3 = @order_2.order_items.create!(item: @hippo, price: @hippo.price, quantity: 2)
     end
 
     it '.grand_total' do
@@ -36,12 +36,13 @@ RSpec.describe Order do
       expect(@order_2.total_quantity).to eq(2)
     end
 
-		# it '.sorted' do
-    #   expect(@order_1.sorted).to eq(@order_1.status)
-    # end
-		
-		# it '.cancel_order' do
-    #   expect(@order_2.cancel_order).to eq(@order_2.status == 3)
-    # end
+    it '.cancel_order' do
+      @order_1.cancel_order
+      @order_1.reload
+
+      expect(@oi_1.quantity).to eq(0)
+      expect(@oi_2.quantity).to eq(0)
+      expect(@order_1.status).to eq('cancelled')
+    end
   end
 end

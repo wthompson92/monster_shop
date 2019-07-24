@@ -28,11 +28,11 @@ Rails.application.routes.draw do
   get '/profile/orders', to: 'orders#index', as: :profile_orders
   get '/profile/order/:id', to: 'orders#show', as: :profile_order
   patch '/profile/order/:id', to: 'orders#update', as: :cancel_order
+  patch '/profile/order/:id', to: 'orders#update', as: :ship_order
   get '/edit_password', to: 'users#edit_password', as: :edit_password
   patch '/profile', to: 'users#update_password', as: :update_password
   get '/admin', to: 'admin/users#dashboard', as: :admin_dashboard
   get '/merchant', to: 'merchant_admins/users#dashboard', as: :merchant_dashboard
-
 
 	patch "/merchant_admins/items/:merchant_id/:item_id", to: "merchant_admins/items#activate", as: :activate_items
 
@@ -40,8 +40,22 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :create, :edit, :update, :destroy]
 		resources :users
   end
+  namespace :merchant_admins do
+    resources :items, only: [:update, :new, :create]
+    resources :orders, only: [:show]
+  end
 
   namespace :admin do
     resources :users
   end
+   get '/merchant/items', to: 'merchant_admins/items#index'
+
+
+  namespace :admin do
+    resources :merchants, only: [:show]
+  end
+
+  get '/admin/merchants/:id', to: 'admin/merchants#dashboard', as: :admin_merchant_dashboard
+  patch '/admin/merchant/:id/disable', to: 'admin/merchants#disable', as: :admin_merchant_disable
+  patch '/admin/merchant/:id/enable', to: 'admin/merchants#enable', as: :admin_merchant_enable
 end

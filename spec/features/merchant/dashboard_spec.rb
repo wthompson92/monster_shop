@@ -36,6 +36,18 @@ RSpec.describe "Merchant Dashboard" do
 			expect(page).not_to have_button("Edit")
 		end
 
+		it "I see a link to view my own items. clicking the link takes me to '/merchant/items'" do
+			visit merchant_dashboard_path
+
+			click_link "My Items"
+			expect(current_path).to eq("/merchant/items")
+			expect(page).to have_content(@ogre.name)
+			expect(page).to have_content(@ogre.description)
+			expect(page).to have_content(@ogre.price)
+			expect(page).to have_xpath("//img[contains(@src,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw')]")
+			expect(page).to have_content(@ogre.inventory)
+		end
+
 		xit "It shows pending orders with merchant's items" do
 
 			visit merchant_dashboard_path

@@ -9,4 +9,8 @@ class User < ApplicationRecord
   belongs_to :merchant, optional: true
 	
   enum role: ["user", "merchant_admin", "admin"]
+
+  def logged_in
+  end
+
 end
