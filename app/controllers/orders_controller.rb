@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
+	before_action :get_order, only: [:show, :update]
 
 	def index
 		@orders = current_user.orders
 	end
 
   def show
-		@order = Order.find(params[:id])
   end
 
   def new
@@ -32,11 +32,9 @@ class OrdersController < ApplicationController
   end
 
 	def update
-		@order = Order.find(params[:id])
 		@order.cancel_order
 		flash[:notice] = "That order has been cancelled."
 		redirect_to profile_path
-		# @ship = @order.ship_order
 	end
 
   private
@@ -44,4 +42,8 @@ class OrdersController < ApplicationController
   def order_params
     params.permit(:status, :user_id)
   end
+
+	def get_order
+		@order = Order.find(params[:id])
+	end
 end
