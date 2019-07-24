@@ -31,7 +31,6 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
     @item.image = params[:image] || 'https://encrypted-tbn0.gstatic.comimages?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw'
     if @item.save
 			redirect_to merchant_items_path(@merchant)
-      # redirect_to "/merchants/#{@merchant.id}/items"
       flash[:success] = "#{@item.name} has been saved."
     else
       generate_flash(@item)
@@ -45,7 +44,6 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
 	def update
     if @item.update(item_params)
       redirect_to merchant_items_path(@merchant)
-      # redirect_to "/merchants/#{@merchant.id}/items"
 			flash[:success] = "#{@item.name} has been updated"
     else
       generate_flash(@item)
@@ -68,7 +66,7 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
 			else
 				flash[:danger] = "#{item.name} can not be deleted - it has been ordered!"
 			end
-			redirect_to '/items'
+			redirect_to items_path
 		end
 	end
 
