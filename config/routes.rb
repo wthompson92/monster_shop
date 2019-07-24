@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   get '/profile/orders', to: 'orders#index', as: :profile_orders
   get '/profile/order/:id', to: 'orders#show', as: :profile_order
   patch '/profile/order/:id', to: 'orders#update', as: :cancel_order
-  patch '/profile/order/:id', to: 'orders#update', as: :ship_order
   get '/edit_password', to: 'users#edit_password', as: :edit_password
   patch '/profile', to: 'users#update_password', as: :update_password
   get '/admin', to: 'admin/users#dashboard', as: :admin_dashboard
@@ -44,9 +43,11 @@ Rails.application.routes.draw do
     resources :items, only: [:update, :new, :create]
     resources :orders, only: [:show]
   end
+  patch '/admin/orders/:id', to: 'admin/orders#update', as: :ship_order
 
   namespace :admin do
     resources :users
+    # resources :orders, only: [:update]
   end
    get '/merchant/items', to: 'merchant_admins/items#index'
 

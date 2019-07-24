@@ -6,4 +6,13 @@ class MerchantAdmins::OrdersController < MerchantAdmins::BaseController
     @order = Order.find(params[:id])
     @customer = @order.customer
   end
-end 
+
+  def update
+    @order = Order.find(params[:id])
+    # @order.subtract_inventory
+    @order.fulfill_order
+    # @order.order_items.subtract_inventory
+    flash[:message] = "You have fuilfilled the order"
+    redirect_to merchant_admins_order_path(@order.id)
+    end
+	end

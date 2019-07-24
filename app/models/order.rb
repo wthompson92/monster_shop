@@ -26,7 +26,6 @@ class Order < ApplicationRecord
 
   def cancel_order
     update_attributes(status: :cancelled)
-
     order_items.each do |oi|
       oi.fulfilled = false
       oi.item.inventory += oi.quantity
@@ -34,6 +33,14 @@ class Order < ApplicationRecord
       oi.save
     end
     #update_attributes(status: 3)
+  end
+
+   def fulfill_order
+     order_items.each do |oi|
+     oi.update(fulfilled: true)
+      oi.item.inventory - oi.quantity
+      oi.save
+    end
   end
 
   def customer
