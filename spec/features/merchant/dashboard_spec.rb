@@ -36,8 +36,6 @@ RSpec.describe "Merchant Dashboard" do
 			expect(page).not_to have_button("Edit")
 		end
 
-<<<<<<< HEAD
-=======
 		it "I see a link to view my own items. clicking the link takes me to '/merchant/items'" do
 			visit merchant_dashboard_path
 
@@ -50,7 +48,6 @@ RSpec.describe "Merchant Dashboard" do
 			expect(page).to have_content(@ogre.inventory)
 		end
 
->>>>>>> 98a230d89c08f15bad564e24124a285cd3e86aea
 		xit "It shows pending orders with merchant's items" do
 
 			visit merchant_dashboard_path
