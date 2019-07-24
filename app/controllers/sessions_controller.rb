@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   def new
 		if current_user
 			redirect_to_home_paths
-			flash[:notice] = "You are already logged in."
+			flash[:warning] = "You are already logged in."
 		end
   end
 
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
      session[:user_id] = user.id
 		 redirect_to_home_paths
-      flash[:success] = "Logged in a #{user.name}"
+      flash[:success] = "Logged in as #{user.name}"
 
     else
       flash.now[:danger] = "User name and/or password invalid."
