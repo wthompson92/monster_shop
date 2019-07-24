@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe do
-  describe "Edit User Profile" do
-    describe "As a registered user, when I visit my profile page" do
+RSpec.describe "Edit User Profile" do
       before :each do
 
         @andrew = User.create!(user_name: "ajohnson", password: "123",  password_confirmation: "123", name: "Andrew Johnson", address: "123 Main St", city: "Lakewood", state: "Colorado", zip: 80401)
@@ -49,7 +47,7 @@ RSpec.describe do
         expect(page).to_not have_content("password")
         expect(page).to have_content("Your profile has been updated!")
 
-    end
+      end
 
     describe "If I include an email address that is already in the system" do
       it "redirects to the form with a flash message saying the username is already taken" do
@@ -61,6 +59,26 @@ RSpec.describe do
         expect(page).to have_content("User name has already been taken")
       end
       end
+
+    describe "When I try to update my password and the passwords do not match" do
+      it "tells me the password passwords dont and redirects me to the esit password_page" do
+        click_link "Edit Password"
+        fill_in "Password", with: "123"
+        fill_in "Password confirmation", with: "12"
+        click_button "Update User"
+        expect(page).to have_content("Password confirmation doesn't match Password")
+      end
+
+
+        it "When I fill in the edit password field correctlyI am redirected to the profile page " do
+          click_link "Edit Password"
+
+        fill_in "Password", with: "123"
+        fill_in "Password confirmation", with: "123"
+        click_button "Update User"
+        expect(current_path).to eq(profile_path)
+        expect(page).to have_content("Your profile has been updated!")
+
+      end
+      end
     end
-  end
-end
