@@ -43,8 +43,7 @@ RSpec.describe "Merchant (Merchant_admin role: 1) Can add an item" do
       fill_in('Inventory', with: 1)
       click_on("Create Item")
       expect(current_path).to eq("/merchants/#{@megan.id}/items")
-      #I need a way to test that page has been given a default image.
-      #Functionality works, test does not.
+      expect(page).to have_xpath("//img[contains(@src,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw')]")
     end
 
     it 'name and description, cannont be blank' do
