@@ -13,6 +13,7 @@
     	<li>Order status: <%= order.status%><%= button_to 'Ship Order', ship_order_path(order), method: :patch  %></li>
     <%else %>
   <li>Order status: <%=order.status%></li>
+  <hr>
   <% end  %>
   <br>
   <% end  %>
