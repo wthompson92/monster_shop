@@ -1,7 +1,7 @@
 <h1>Merchant Order Page</h1>
+<hr>
 
-<dl>
-  <dt><h3>Customer Information</h3></dt>
+<dl><dt><h2>Customer Information<h2/></dt>
     <dd>Customer Name: <%= @customer.name %></dd>
     <dd>Customer Address: <%= @customer.address %></dd>
 </dl>
@@ -9,8 +9,7 @@
 <h3>Fulfill Order Items</h3>
   <% @items.each do |order_item| %>
   <section id="item-<%= order_item.id%>">
-
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 25rem;">
         <img class="card-img-top" src=<%="#{order_item.item.image}"%>>
         <div class="card-body">
           <dl>

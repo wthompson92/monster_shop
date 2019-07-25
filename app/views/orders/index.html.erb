@@ -1,5 +1,5 @@
 <h1>My Orders</h1>
-
+<hr>
 <% @orders.each do |order| %>
 	<h4><%= link_to "Order ID: #{order.id}", profile_order_path(order.id)%></h4>
 	<p>Order Status: <%= order.status %></p>

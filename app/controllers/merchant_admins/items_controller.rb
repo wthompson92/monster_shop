@@ -1,5 +1,5 @@
 class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
-  
+
   def index
     user = current_user
     @merchant =	 Merchant.find(user.merchant_id)
@@ -32,7 +32,8 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
     user = current_user
     @merchant = Merchant.find(user.merchant_id)
     @item = @merchant.items.new(item_params)
-    @item.image = params[:image] || 'https://encrypted-tbn0.gstatic.comimages?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw'
+    @item.image = params[:image]
+    # || 'https://encrypted-tbn0.gstatic.comimages?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw'
     if @item.save
       redirect_to "/merchants/#{@merchant.id}/items"
       flash[:success] = "#{@item.name} has been saved."
@@ -76,7 +77,7 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
 			end
 			redirect_to '/items'
 		end
-	end	
+	end
 
   private
 
