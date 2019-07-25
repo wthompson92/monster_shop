@@ -5,6 +5,13 @@ class MerchantAdmins::OrdersController < MerchantAdmins::BaseController
     @items = @merchant.order_items
     @order = Order.find(params[:id])
     @customer = @order.customer
+
+    true_false = @order.order_items.all do |i|
+      i.status == true
+    end
+      if true_false
+        @order.update(status: "packaged")
+      end
   end
 
   def update
