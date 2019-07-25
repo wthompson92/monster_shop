@@ -43,7 +43,7 @@ RSpec.describe do
         it "If I do not have any orders, I do not see the 'My Orders' link" do
           rick = User.create!(user_name: "Moranis", password: "123",  password_confirmation: "123", name: "Rick Moranis", address: "I Shrunk the Kids", city: "Honey", state: "Colorado", zip: 20202)
 
-          click_link 'Logout'
+          click_button 'Logout'
 
           visit root_path
           click_link "Login"

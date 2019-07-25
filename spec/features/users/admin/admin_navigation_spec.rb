@@ -15,7 +15,7 @@ RSpec.describe "Admin Navigation" do
       expect(page).to have_link("Items")
       expect(page).to have_link("Merchants")
       expect(page).to have_link("Admin Dashboard")
-      expect(page).to have_link("Logout")
+      expect(page).to have_button("Logout")
       expect(page).to have_link("All Users")
 
       expect(page).not_to have_link("Cart")

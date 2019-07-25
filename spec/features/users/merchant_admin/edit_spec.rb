@@ -19,7 +19,7 @@ RSpec.describe "Merchant Edit Item" do
       expect(page).to have_link("Cart")
       expect(page).to have_link("Profile")
       expect(page).to have_link("Merchant Dashboard")
-      expect(page).to have_link("Logout")
+      expect(page).to have_button("Logout")
       expect(page).not_to have_link("Login")
       expect(page).not_to have_link("Register")
     end
@@ -34,4 +34,4 @@ RSpec.describe "Merchant Edit Item" do
     end
   end
 end
-end 
+end
