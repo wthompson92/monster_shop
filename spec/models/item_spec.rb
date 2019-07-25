@@ -83,5 +83,10 @@ RSpec.describe Item do
 
       expect(Item.least_favorite_items).to eq([@hippo, @mermaid, @troll, @warewolf, @yeti])
     end
+
+    it '.purchased' do
+      expect(@ogre.purchased.length).to eq(10)
+
+    end
   end
 end

@@ -50,5 +50,20 @@ RSpec.describe Order do
 
       expect(@order_2.status).to eq('packaged')
     end
+
+    it '.fulfill_order' do
+      @order_2.fulfill_order
+      expect(@order_2.status).to eq("pending")
+    end
+
+    it '.ship_order' do
+      @order_2.ship_order
+    expect(@order_2.status).to eq("shipped")
+    end
+
+    it '.customer' do
+
+      expect(@order_1.customer).to eq(@user_1)
+    end
   end
 end
