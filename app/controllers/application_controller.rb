@@ -35,4 +35,8 @@
   def cart
     @cart ||= Cart.new(session[:cart])
   end
+
+  def pending_order
+        order.pending?
+    end
 end
