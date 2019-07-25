@@ -23,7 +23,7 @@ RSpec.describe Order do
       @order_2 = @user_1.orders.create!
       @oi_1 = @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)
       @oi_2 = @order_1.order_items.create!(item: @hippo, price: @hippo.price, quantity: 3)
-      @oi_3 = @order_2.order_items.create!(item: @hippo, price: @hippo.price, quantity: 2)
+      @oi_3 = @order_2.order_items.create!(item: @hippo, price: @hippo.price, quantity: 2, fulfilled: true )
     end
 
     it '.grand_total' do
@@ -43,6 +43,12 @@ RSpec.describe Order do
       expect(@oi_1.quantity).to eq(0)
       expect(@oi_2.quantity).to eq(0)
       expect(@order_1.status).to eq('cancelled')
+    end
+
+    it '.items_packaged' do
+      @order_2.items_packaged
+
+      expect(@order_2.status).to eq('packaged')
     end
   end
 end

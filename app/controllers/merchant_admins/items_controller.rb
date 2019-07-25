@@ -1,6 +1,8 @@
 class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
+
 	before_action :get_current_merchant, only: [:index, :new, :create, :update]
 	before_action :get_item, only: [:edit, :update]
+
 
   def index
     @items = @merchant.items
@@ -28,7 +30,7 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
 
   def create
     @item = @merchant.items.new(item_params)
-    @item.image = params[:image] || 'https://encrypted-tbn0.gstatic.comimages?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw'
+    @item.image = params[:image]
     if @item.save
 			redirect_to merchant_items_path(@merchant)
       flash[:success] = "#{@item.name} has been saved."
