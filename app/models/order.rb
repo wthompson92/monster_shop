@@ -16,9 +16,9 @@ class Order < ApplicationRecord
     order_items.sum(:quantity)
   end
 
-  def package_order
-    self.update_attributes(status: 1)
-  end
+  # def package_order
+  #   self.update_attributes(status: 1)
+  # end
 
   def ship_order
     self.update_attributes(status: 2)
@@ -55,7 +55,7 @@ class Order < ApplicationRecord
   #   binding.pry
   #   Order.joins(order_items)
   # end
-
+  #
   def customer
     self.user
   end

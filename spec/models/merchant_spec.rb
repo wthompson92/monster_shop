@@ -64,5 +64,9 @@ RSpec.describe Merchant do
       expect(@giant.active).to eq(true)
       expect(@megan.enabled).to eq(true)
     end
+
+    it '.pending_orders' do
+      expect(@megan.pending_orders.length).to eq(3)
+    end
   end
 end

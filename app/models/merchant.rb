@@ -44,7 +44,7 @@ class Merchant < ApplicationRecord
   def pending_orders
     order_items.joins(:order).where("orders.status = 0")
   end
-	
+
 	# def merchant_orders
 	#   items.joins(:orders)
 	# end
