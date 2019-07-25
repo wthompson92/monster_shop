@@ -31,7 +31,6 @@ class MerchantAdmins::ItemsController < MerchantAdmins::BaseController
   def create
     @item = @merchant.items.new(item_params)
     @item.image = params[:image]
-    # || 'https://encrypted-tbn0.gstatic.comimages?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw'
     if @item.save
 			redirect_to merchant_items_path(@merchant)
       flash[:success] = "#{@item.name} has been saved."

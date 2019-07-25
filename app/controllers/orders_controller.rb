@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   def create
     @user = current_user
     @order = @user.orders.new(order_params)
-    if @order.save
+    @order.save
       cart.items.each do |item|
         @order.order_items.create({
           item: item,
@@ -22,13 +22,9 @@ class OrdersController < ApplicationController
           price: item.price
           })
       end
-      session.delete(:cart)
-			flash[:success] = "Your order was created"
-      redirect_to "/profile/orders"
-    else
-      flash[:danger] = "Please complete address form to create an order."
-      render :new
-    end
+    session.delete(:cart)
+		flash[:success] = "Your order was created"
+    redirect_to "/profile/orders"
   end
 
 	def update

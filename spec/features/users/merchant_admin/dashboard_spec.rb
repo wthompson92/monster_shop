@@ -42,5 +42,14 @@ RSpec.describe "Merchant Dashboard" do
 		 		expect(page).to have_content(@order_item_1.quantity)
 		 		expect(page).to have_content(@order_item_1.subtotal)
 		 	end
-	  end
-	end
+
+		it 'I can visit my items' do
+
+			visit merchant_dashboard_path
+
+			click_on "Items"
+
+			expect(current_path).to eq(items_path)
+		end
+  end
+end

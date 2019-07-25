@@ -24,14 +24,14 @@ class MerchantsController < ApplicationController
   def edit
   end
 
-  def update
-    if @merchant.update(merchant_params)
-      redirect_to "/merchants/#{@merchant.id}"
-    else
-      generate_flash(@merchant)
-      render :edit
-    end
-  end
+  # def update
+  #   if @merchant.update(merchant_params)
+  #     redirect_to "/merchants/#{@merchant.id}"
+  #   else
+  #     generate_flash(@merchant)
+  #     render :edit
+  #   end
+  # end
 	#
   # def destroy
   #   merchant = Merchant.find(params[:id])
@@ -45,9 +45,9 @@ class MerchantsController < ApplicationController
 
   private
 
-  def merchant_params
-    params.permit(:name, :address, :city, :state, :zip)
-  end
+  # def merchant_params
+  #   params.permit(:name, :address, :city, :state, :zip)
+  # end
 
 	def get_merchant
 		@merchant = Merchant.find(params[:id])

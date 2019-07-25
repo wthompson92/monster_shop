@@ -14,17 +14,6 @@
   	end
   end
 
-	def current_reg_user?
-		current_user && current_user.user?
-	end
-
-
-	def require_reg_user
-		unless current_reg_user?
-			render file: "/public/404", status: 404
-		end
-	end
-
 	def current_merchant_employee?
 		current_user && current_user.user? && current_user.merchant_id
 	end
@@ -45,15 +34,5 @@
 
   def cart
     @cart ||= Cart.new(session[:cart])
-  end
-
-	def pending_order
-		order.pending?
-	end
-
-  def generate_flash(resource)
-    resource.errors.messages.each do |validation, message|
-      flash[validation] = "#{validation}: #{message}"
-    end
   end
 end
