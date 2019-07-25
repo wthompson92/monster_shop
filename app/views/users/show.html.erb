@@ -4,8 +4,8 @@
     <dd class='list-item'>  User name: <%= @user.user_name %> </dd>
     <dd class='list-item'> Address: <%= @user.address %> </dd>
     <dd class='list-item'> City: <%= @user.city %> </dd>
-    <dd class='list-item'> Zip: <%= @user.zip %></dd>
     <dd class='list-item'> State: <%= @user.state %></dd>
+    <dd class='list-item'> Zip: <%= @user.zip %></dd>
   </dl>
  <%= link_to "Edit Profile", edit_user_path(@user) %>
 <%= link_to "Edit Password", edit_password_path(@user) %>

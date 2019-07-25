@@ -6,7 +6,4 @@ class OrderItem < ApplicationRecord
     quantity * price
   end
 
-#    def subtract_inventory
-#      inventory - quantity
-#    end
 end

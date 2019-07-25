@@ -32,7 +32,6 @@ class Order < ApplicationRecord
       oi.quantity = 0
       oi.save
     end
-    #update_attributes(status: 3)
   end
 
    def fulfill_order
@@ -42,6 +41,20 @@ class Order < ApplicationRecord
       oi.save
     end
   end
+
+  def items_packaged
+    true_or_false = order_items.map do |oi|
+      oi.fulfilled == true
+    end
+    if true_or_false.all? == true
+      update_attributes(status: :packaged)
+    end
+  end
+
+  # def packaged?
+  #   binding.pry
+  #   Order.joins(order_items)
+  # end
 
   def customer
     self.user
