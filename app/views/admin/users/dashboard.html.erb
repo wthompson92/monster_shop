@@ -1,5 +1,6 @@
 <h1>Admin Dashboard</h1>
 
+<h3>Orders</h3>
 <% @users.each do |user| %>
   <%user.orders.each do |order|%>
 
@@ -14,9 +15,9 @@
     <% if order.status == "pending" %>
     	<li>Order status: <%= order.status%><%= button_to 'Ship Order', ship_order_path(order), method: :patch  %></li>
     <%else %>
-    <li>Order status: <%=order.status%></li>
-    <% end %>
-  <% end %>
-
+  <li>Order status: <%=order.status%></li>
+  <% end  %>
+  <br>
+  <% end  %>
 </dl>
 <% end %>
