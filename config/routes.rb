@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
   get '/login', to: 'sessions#new', as: 'login'
-  post '/login', to: 'sessions#create'
+  post '/login', to: 'sessions#create', as: 'register'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
   resources :merchants do
@@ -14,11 +14,11 @@ Rails.application.routes.draw do
 
   resources :reviews, only: [:edit, :update, :destroy]
 
-  get '/cart', to: 'cart#show'
-	post '/cart/:item_id', to: 'cart#add_item'
-  delete '/cart', to: 'cart#empty'
-  patch '/cart/:change/:item_id', to: 'cart#update_quantity'
-  delete '/cart/:item_id', to: 'cart#remove_item'
+  get '/cart', to: 'cart#show', as: 'cart'
+	post '/cart/:item_id', to: 'cart#add_item', as: 'add_to_cart'
+  delete '/cart', to: 'cart#empty', as: 'empty_cart'
+  patch '/cart/:change/:item_id', to: 'cart#update_quantity', as: 'update_cart'
+  delete '/cart/:item_id', to: 'cart#remove_item', as: 'remove_item'
 
   get '/register/new', to: 'users#new', as: :new_user
   resources :users, only: [:create, :show, :edit, :update] do
@@ -48,11 +48,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    # resources :orders, only: [:update]
   end
 
 
-	get '/merchant/items', to: 'merchant_admins/items#index'
+	get '/merchant/items', to: 'merchant_admins/items#index', as: :only_merchants_items
 
   get '/admin/merchants/:id', to: 'admin/merchants#dashboard', as: :admin_merchant_dashboard
   patch '/admin/merchant/:id/disable', to: 'admin/merchants#disable', as: :admin_merchant_disable
